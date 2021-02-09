@@ -1,0 +1,22 @@
+/* Implement the previous problem using a file as input source.
+Vlad Coman, Group 2024
+02.05.2020
+ * */
+import java.io.*;
+public class Lab08{
+	public static void main(String []args) {
+		try {
+			FileReader cin=new FileReader("test.txt");
+			StreamTokenizer tok=new StreamTokenizer(cin);
+			while(tok.nextToken() != StreamTokenizer.TT_EOF) {
+			if(tok.ttype == StreamTokenizer.TT_WORD)
+				System.out.println("Cuvant: "+tok.sval);
+			if(tok.ttype == StreamTokenizer.TT_NUMBER)
+				System.out.println("Numar: "+tok.nval);
+			}
+		cin.close();
+		}catch (IOException e) {
+			System.out.println("Eroare la citire!"+e);
+		}
+	}
+}

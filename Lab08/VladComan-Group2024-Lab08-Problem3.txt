@@ -1,0 +1,75 @@
+/*  You are given a binary file which contains a sequence of characters 
+ * representing a private Bitcoin key (256 characters). From the keyboard 
+ * read a sequence of characters which represents the public key for a 
+ * Bitcoin. Generate the transaction id for this information by using the 
+ * XOR bitwise operator. Write the resulting number in binary file. 
+Vlad Coman, Group 2024
+02.05.2020
+ * */
+import java.io.*;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+public class Lab08{
+	private static Scanner cin=new Scanner(System.in);
+	public static void main(String []args) {
+		int day, month, year;
+		String new_month=new String();
+		String text=new String();
+		System.out.println("Introduceti data calendaristica: ");
+		while(text.compareTo("x")!=0 || text.compareTo("X")!=0) {
+			text=cin.next();
+			StringTokenizer sep=new StringTokenizer(text,"/");
+			if(text.compareTo("x")==0 || text.compareTo("X")==0) {
+				System.out.println("Ati iesit din program!");
+				System.exit(0);
+				}
+			day=Integer.parseInt(sep.nextToken());
+			month=Integer.parseInt(sep.nextToken());
+			year=Integer.parseInt(sep.nextToken());
+			switch(month) {
+			case 1:
+				new_month="January";
+				break;
+			case 2:
+				new_month="February";
+				break;
+			case 3:
+				new_month="March";
+				break;
+			case 4:
+				new_month="April";
+				break;
+			case 5:
+				new_month="May";
+				break;
+			case 6:
+				new_month="June";
+				break;
+			case 7:
+				new_month="July";
+				break;
+			case 8:
+				new_month="August";
+				break;
+			case 9:
+				new_month="September";
+				break;
+			case 10:
+				new_month="October";
+				break;
+			case 11:
+				new_month="November";
+				break;
+			case 12:
+				new_month="December";
+				break;
+			default:
+				System.out.println("Aceasta nu este o luna calendaristica!");
+				System.exit(0);
+				break;
+			}
+			System.out.println(day+" "+new_month+" "+year);
+			System.out.println("Introduceti data calendaristica: ");
+		}
+	}
+}

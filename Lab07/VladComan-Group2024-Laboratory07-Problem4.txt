@@ -1,0 +1,86 @@
+/* Implement a class called UserFile (name, extension, type, size 
+ * in bytes, constructors, mutators, accesors). The types of files are 
+ * predefined and stored in a Hashtable object (for example "image"->0, 
+ * "text"->1, "application"->2, etc.) Create a list of objects from this 
+ * class and read from the keyboard the associated info. Print all the 
+ * specific extensions of the predefined file types. Order the file list 
+ * based on size and print the result
+ * Vlad Coman, Group 2024
+ * 24.04.2020
+ * */
+package Laboratory07;
+import java.util.Hashtable;
+import java.util.Scanner;
+class UserFile{
+	private String name;
+	private String extension;
+	private Hashtable<Integer,String> type;
+	private byte size;
+	UserFile(String name, String extension, Hashtable<Integer, String> type, byte size){
+		this.name=name;
+		this.extension=extension;
+		this.type=type;
+		this.size=size;
+	}
+	UserFile(){
+		this.name=null;
+		this.extension=null;
+		this.type=null;
+		this.size=0;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getExtension() {
+		return extension;
+	}
+	public void setExtension(String extension) {
+		this.extension = extension;
+	}
+	public Hashtable<Integer, String> getType() {
+		return type;
+	}
+	public void setType(Hashtable<Integer, String> type) {
+		this.type = type;
+	}
+	public byte getSize() {
+		return size;
+	}
+	public void setSize(byte size) {
+		this.size = size;
+	}
+}
+public class Main {
+	private static Scanner cin;
+	public static void main(String []args) {
+	cin=new Scanner(System.in);	
+	String name=new String();
+	String extension=new String();
+	Hashtable<Integer,String> type = new Hashtable<Integer,String>();
+	byte size;
+	UserFile user=new UserFile();
+	type.put(0, "image");
+	type.put(1, "text");
+	type.put(2, "application");
+	type.put(3, "executable");
+	System.out.println("Introduce the name of the user: ");
+	name=cin.next();
+	user.setName(name);
+	System.out.println("Introduce the extension: ");
+	extension=cin.next();
+	user.setExtension(extension);
+	System.out.println("Introduce the type (0=image, 1=text, 2=application, 3=executable: ");
+	Integer n=cin.nextInt();
+	user.setType(type.get(n));
+	size=UserFile.getObjectSize(user);
+	user.setSize(size);
+	System.out.println("The data from the user is: ");
+	System.out.println("Name: "+user.getName());
+	System.out.println("Extension: "+user.getExtension());
+	System.out.println("Type: "+user.getType());
+	System.out.println("The size of the object (bytes): "+user.getSize());
+	}
+}

@@ -1,0 +1,59 @@
+/*Mircica Tudor 
+ETTI anul II, sectia Engleza, grupa 4 
+tudor2mircica@gmail.com
+Lab 9(10.05.2020) 
+4. Write a Java app which uses the synchronized method acces for mutual exclusion. Create 3 separate threads which simultaneously call methods to increment and decrement a separate class' class variable. 
+Check if the results are what you expect them to be. Remove the synchronized blocks and reevaluate the results.*/
+import java.util.*;
+import java.io.*;
+
+class ID {
+	static int k;
+
+	ID(int x) {
+		k = x;
+	}
+
+	int getK() {
+		return k;
+	}
+
+	synchronized public void add() {
+		k++;
+	}
+
+	synchronized public void sub() {
+		k--;
+	}
+}
+
+class MyThread implements Runnable {
+	ID temp;
+
+	MyThread(ID X) {
+		temp = X;
+	}
+
+	@Override
+	public void run() {
+		temp.add();
+		System.out.println("Value after addition: " + temp.getK());
+		temp.sub();
+		System.out.println("Value after substraction: " + temp.getK());
+
+	}
+}
+
+public class Project {
+	public static void main(String args[]) {
+		Scanner dis = new Scanner(System.in);
+		System.out.print("Read a number: ");
+		int n = dis.nextInt();
+		MyThread test1 = new MyThread(new ID(n));
+		test1.run();
+		MyThread test2 = new MyThread(new ID(n));
+		test2.run();
+		MyThread test3 = new MyThread(new ID(n));
+		test3.run();
+	}
+}

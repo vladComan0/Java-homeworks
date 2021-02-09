@@ -1,0 +1,265 @@
+/*Implement a Java application that uses GridBagLayout for arranging the 
+components specific to a computing application. (TextField for I/O 
+operations, buttons for numbers, mathematical operations, screen 
+cleaning, etc.).
+FUNCTIONALITY
+Vlad Coman, Group 2024
+31.05.2020
+*/
+package lab12;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+class MyFrame1 extends JFrame{
+	private static final long serialVersionUID = 1L;
+	MyFrame1(){
+		super();
+		ButtonPanel1 b=new ButtonPanel1("Operations");
+		Label l=new Label("I/O:");
+		this.add(l);
+		this.add(b.getT());
+		this.add(b);
+		this.setSize(400,400);
+		this.setLayout(new FlowLayout());
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+	}
+}
+class ButtonPanel1 extends JPanel{
+	private static final long serialVersionUID = 1L;
+	JTextArea t;
+	public ButtonPanel1(String title) {
+		super(new GridBagLayout());
+		GridBagConstraints pos=new GridBagConstraints();
+		setBackground(Color.cyan);
+		setBorder(BorderFactory.createTitledBorder(title));
+		t=new JTextArea(1,25);
+		JButton b1=new JButton("1");
+		b1.setPreferredSize(new Dimension(50,50));
+		pos.gridx=0;
+		pos.gridy=0;
+		this.add(b1,pos);
+		JButton b2=new JButton("2");
+		b2.setPreferredSize(new Dimension(50,50));
+		pos.gridx=1;
+		pos.gridy=0;
+		this.add(b2,pos);
+		JButton b3=new JButton("3");
+		b3.setPreferredSize(new Dimension(50,50));
+		pos.gridx=2;
+		pos.gridy=0;
+		this.add(b3,pos);
+		JButton b4=new JButton("4");
+		b4.setPreferredSize(new Dimension(50,50));
+		pos.gridx=3;
+		pos.gridy=0;
+		this.add(b4,pos);
+		JButton b5=new JButton("5");
+		b5.setPreferredSize(new Dimension(50,50));
+		pos.gridx=0;
+		pos.gridy=1;
+		this.add(b5,pos);
+		JButton b6=new JButton("6");
+		b6.setPreferredSize(new Dimension(50,50));
+		pos.gridx=1;
+		pos.gridy=1;
+		this.add(b6,pos);
+		JButton b7=new JButton("7");
+		b7.setPreferredSize(new Dimension(50,50));
+		pos.gridx=2;
+		pos.gridy=1;
+		this.add(b7,pos);
+		JButton b8=new JButton("8");
+		b8.setPreferredSize(new Dimension(50,50));
+		pos.gridx=3;
+		pos.gridy=1;
+		this.add(b8,pos);
+		JButton b9=new JButton("9");
+		b9.setPreferredSize(new Dimension(50,50));
+		pos.gridx=0;
+		pos.gridy=2;
+		this.add(b9,pos);
+		JButton b10=new JButton("0");
+		b10.setPreferredSize(new Dimension(50,50));
+		pos.gridx=1;
+		pos.gridy=2;
+		this.add(b10,pos);
+		JButton b11=new JButton("+");
+		b11.setPreferredSize(new Dimension(50,50));
+		pos.gridx=2;
+		pos.gridy=2;
+		this.add(b11,pos);;
+		JButton b12=new JButton("-");
+		b12.setPreferredSize(new Dimension(50,50));
+		pos.gridx=3;
+		pos.gridy=2;
+		this.add(b12,pos);
+		JButton b13=new JButton("*");
+		b13.setPreferredSize(new Dimension(50,50));
+		pos.gridx=0;
+		pos.gridy=3;
+		this.add(b13,pos);
+		JButton b14=new JButton("/");
+		b14.setPreferredSize(new Dimension(50,50));
+		pos.gridx=1;
+		pos.gridy=3;
+		this.add(b14,pos);
+		JButton b15=new JButton("=");
+		b15.setPreferredSize(new Dimension(50,50));
+		pos.gridx=2;
+		pos.gridy=3;
+		this.add(b15,pos);
+		JButton b16=new JButton("C");
+		b16.setPreferredSize(new Dimension(50,50));
+		pos.gridx=3;
+		pos.gridy=3;
+		this.add(b16,pos);
+		b1.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				   t.append("1");
+			   }
+			});
+		b2.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("2");
+			   }
+			});
+		b3.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("3");
+			   }
+			});
+		b4.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("4");
+			   }
+			});
+		b5.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("5");
+			   }
+			});
+		b6.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("6");
+			   }
+			});
+		b7.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("7");
+			   }
+			});
+		b8.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("8");
+			   }
+			});
+		b9.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("9");
+			   }
+			});
+		b10.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("0");
+			   }
+			});
+		b11.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("+");
+			   }
+			});
+		b12.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("-");
+			   }
+			});
+		b13.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("*");
+			   }
+			});
+		b14.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("/");
+			   }
+			});
+		b16.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.setText(null);
+			   }
+			});
+		b15.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 String str=t.getText();
+				 int i=0;
+				 int n1,n2;
+				 float res;
+				 if(str.substring(0).contains("+")==true) {
+					 for(i=0;i<str.length();i++) {
+						 if(str.charAt(i)=='+') {
+							 break;
+						 }
+					 }
+					 n1=Integer.parseInt(str.substring(0,i));
+					 n2=Integer.parseInt(str.substring(i));
+					 res=n1+n2;
+					 t.setText(Float.toString(res));
+					 i=0;
+				 }
+				 if(str.substring(0).contains("-")==true) {
+					 for(i=0;i<str.length();i++) {
+						 if(str.charAt(i)=='-') {
+							 break;
+						 }
+					 }
+					 n1=Integer.parseInt(str.substring(0,i));
+					 n2=Integer.parseInt(str.substring(i+1));
+					 res=n1-n2;
+					 t.setText(Float.toString(res));
+					 i=0;
+				 }
+				 if(str.substring(0).contains("/")==true) {
+					 for(i=0;i<str.length();i++) {
+						 if(str.charAt(i)=='/') {
+							 break;
+						 }
+					 }
+					 n1=Integer.parseInt(str.substring(0,i));
+					 n2=Integer.parseInt(str.substring(i+1));
+					 res=n1/(float)n2;
+					 if(n2==0) {
+						 t.setText("ERROR! YOU CANNOT DIVIDE BY 0");
+						 t.setForeground(Color.red); 
+					 }
+					 else {
+					 t.setText(Float.toString(res));
+					 }
+					 i=0;
+				 }
+				 if(str.substring(0).contains("*")==true) {
+					 for(i=0;i<str.length();i++) {
+						 if(str.charAt(i)=='*') {
+							 break;
+						 }
+					 }
+					 n1=Integer.parseInt(str.substring(0,i));
+					 n2=Integer.parseInt(str.substring(i+1));
+					 res=n1*n2;
+					 t.setText(Float.toString(res));
+					 i=0;
+				 }
+			   }
+			});
+	}
+	JTextArea getT() {
+		return t;
+	}
+}
+public class Main{
+public static void main(String args[]) {
+	new MyFrame1();
+}
+}

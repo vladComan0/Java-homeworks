@@ -1,0 +1,55 @@
+package Laboratory07;
+/* Create an interface called Generator<T> with a single method next(T var).
+ * Implement the interface so that you can generate the following values 
+ * when applying it to certain data types (Integer, Character, etc.). 
+ * The class will be instantiated in the main( ) method, located 
+ * in a separate class.
+ * Vlad Coman, Group 2024
+ * 24.04.2020
+ */
+package Laboratory07;
+public interface Generator <T> {
+	public void next(T var);
+}
+package Laboratory07;
+import java.util.Scanner;
+public class Implementation <T> implements Generator <T>{
+	public void next(T var) {
+		if(var.getClass()==Integer.class) {
+			System.out.println("The next element is (integer): ");
+			System.out.print((int)var+1+"\n");
+		}
+		if(var.getClass()==Character.class) {
+			System.out.println("The next element is (character): ");
+			System.out.print((char)var+1+"\n");
+		}
+		if(var.getClass()==Double.class) {
+			System.out.println("The next element is (double): ");
+			System.out.print((double)var+1+"\n");
+		}
+	}
+}
+
+import java.util.Scanner;
+
+public class Main {
+	private static Scanner cin;
+	public static void main(String []args) {
+		int x;
+		char c;
+		double d;
+		cin=new Scanner(System.in);
+		Implementation<Integer> ob1=new Implementation<Integer>();
+		Implementation<Character> ob2=new Implementation<Character>();
+		Implementation<Double> ob3=new Implementation<Double>();
+		System.out.println("Introduce the value(integer): ");
+		x=cin.nextInt();
+		ob1.next(x);
+		System.out.println("Introduce the value(character): ");
+		c=cin.next().charAt(0);
+		ob2.next(c);
+		System.out.println("Introduce the value(double): ");
+		d=cin.nextDouble();
+		ob3.next(d);
+	}
+}

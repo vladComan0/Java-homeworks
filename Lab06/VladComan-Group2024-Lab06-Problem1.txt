@@ -1,0 +1,54 @@
+/*Write a Java program that defines an array 
+of double values and read the appropriate data from the keyboard. 
+Handle the exception produced when the code tries to acces an 
+element that has a negative index or an index greater than the
+maximum number of elements (ArrayIndexOutOfBoundsException).
+Display a significant message when the exception occurs.
+Consider a matrix with a fixed number of elements for each line 
+and protect the code against the exception mentioned
+above. Consider also the case if each line has a different number of elements.
+Vlad Coman, Group 2024
+18.04.2020
+*/
+package labwork5;
+import java.util.Scanner;
+public class labwork6 {
+    public static void main(String[] args) {
+        Double arr[] = new Double[25];
+        arr = readArray();
+        valueAt(4,arr);
+    }
+    @SuppressWarnings("resource")
+	static Double[] readArray() {
+        Scanner cin = new Scanner(System.in);
+        try {
+            System.out.println("Introduceti nr de elemente: ");
+            int n = cin.nextInt();
+            cin.nextLine();
+            if (n > 25) throw new ArrayIndexOutOfBoundsException("Nu se pot introduce mai mult de 25 de valori!");
+            Double[] arr = new Double[n];
+            System.out.println("Introduceti noul array: ");
+            for (int i = 0; i < n; i++) {
+                arr[i] = cin.nextDouble();
+            }
+            return arr;
+
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            ex.printStackTrace();
+        }
+        Double[] arrayForExits = {0.0};
+        return arrayForExits;
+    }
+
+    static void valueAt(int index, Double[] array) {
+        try{
+            if(index<0) throw new ArrayIndexOutOfBoundsException("Nu se pot introduce indecsi negativi!");
+            else if(index <=array.length) System.out.println("Elementul de pe pozitia " + index + " este " + array[index]);
+            else throw new ArrayIndexOutOfBoundsException("Nu putem avea mai mult de 25 de valori!");
+        }
+        catch (ArrayIndexOutOfBoundsException ex) {
+            ex.printStackTrace();
+        }
+    }
+}
+

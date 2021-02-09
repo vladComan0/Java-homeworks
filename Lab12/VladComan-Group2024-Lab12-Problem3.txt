@@ -1,0 +1,146 @@
+/*Build an application which measures the user's response time. 
+The application randomly generates 10 red and black circles. The 
+application includes two buttons labelled RED and BLACK. The user must 
+press the correct button. At the end of the game, the app will display 
+the number of correct answers and the user's average reaction time 
+(use the method System.currentTimeMillis())
+Vlad Coman, Group 2024
+31.05.2020
+*/
+package lab12;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.util.*;
+import java.lang.System.*;
+class Drawer extends JFrame {
+		Drawer(){
+		super();
+		MyPanel panel=new MyPanel();
+		this.add(panel.getCanvas());
+		this.add(panel);
+		this.setSize(400,400);
+		this.setLayout(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+	}
+}
+class MyCanvas extends Canvas{
+	int time;
+	int c;
+	private static final long serialVersionUID = 1L;
+	public MyCanvas() {
+		this.setSize(new Dimension(400, 250));
+		this.setBackground(new Color(255, 255, 255));
+	}
+	public void paint(Graphics g) {
+		Random rand=new Random();
+		c=rand.nextInt(2);
+			if(c<1) {
+					g.setColor(new Color(0,0,0));
+					time=(int) System.currentTimeMillis();
+			}
+			else if(c==1) {
+					g.setColor(new Color(255,0,0));
+					time=(int) System.currentTimeMillis();
+			}
+			g.fillOval(100, 25, 200, 200);
+	}
+	public int getTime() {
+		return time;
+	}
+	public void setTime(int time) {
+		this.time = time;
+	}
+	public int getC() {
+		return c;
+	}
+	public void setC(int c) {
+		this.c = c;
+	}
+}
+class MyPanel extends JPanel{
+	int time1;
+	MyCanvas canvas;
+	JButton red;
+	JButton black;
+	int score;
+	MyPanel(){
+		super();
+		setLayout(new BorderLayout());
+		this.setBounds(50, 250, 300, 100);
+		JTextField tf=new JTextField(30);
+		JTextField tf2=new JTextField(30);
+		tf.setEditable(false);
+		tf2.setEditable(false);
+		tf.setText("RESPONSE TIME: ");
+		tf2.setText("SCORE: ");
+		canvas=new MyCanvas();
+		score=0;
+		red=new JButton("RED");
+		red.setBackground(Color.red);
+		black=new JButton("BLACK");
+		black.setBackground(Color.black);
+		black.setForeground(Color.white);
+		red.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				   time1=(int)System.currentTimeMillis();
+				   tf.setText("RESPONSE TIME: "+Integer.toString(time1-canvas.getTime())+" ms");
+				   if(canvas.getC()==1)
+					   score++;
+				   else score=0;
+				   tf2.setText("SCORE: "+Integer.toString(score));
+				   if(score==50) {
+					   tf2.setText("YOU WON!");
+					   tf2.setForeground(Color.green);
+				   }
+				   canvas.repaint();
+			   }
+			});
+		black.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				   time1=(int)System.currentTimeMillis();
+				   tf.setText("RESPONSE TIME: "+Integer.toString(time1-canvas.getTime())+" ms");
+				   if(canvas.getC()<1)
+					   score++;
+				   else score=0;
+				   tf2.setText("SCORE: "+Integer.toString(score));
+				   if(score==50) {
+					   tf2.setText("YOU WON!");
+					   tf2.setForeground(Color.green);
+				   }
+				   canvas.repaint();
+			   }
+			});
+		add(tf2,BorderLayout.NORTH);
+		add(red,BorderLayout.WEST);
+		add(black,BorderLayout.EAST);	
+		add(tf,BorderLayout.SOUTH);
+	}
+	public MyCanvas getCanvas() {
+		return canvas;
+	}
+	public void setCanvas(MyCanvas canvas) {
+		this.canvas = canvas;
+	}
+	public JButton getRed() {
+		return red;
+	}
+	public void setRed(JButton red) {
+		this.red = red;
+	}
+	public JButton getBlack() {
+		return black;
+	}
+	public void setBlack(JButton black) {
+		this.black = black;
+	}
+}
+public class Main{
+public static void main(String args[]) {
+	new Drawer();
+}
+}

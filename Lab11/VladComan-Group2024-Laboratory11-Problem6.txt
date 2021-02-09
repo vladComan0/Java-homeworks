@@ -1,0 +1,111 @@
+/*Write a Java application which includes a sign-up form for an online 
+course. The form includes information regarding the name, surname, year 
+of study, faculty, financing (tax/budget) and the course. The year of study,
+faculty and course are drop-down lists, and the financing is a check-box
+field. In a TextArea field print the filled-in information after the
+Sign-up button is pressed.
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+public class TabbedView {
+public static void main(String args[]) {
+	JFrame frame=new JFrame("SIGN-UP FORM");
+	//frame.setLayout(new FlowLayout());
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	JPanel panel = new JPanel();
+	panel.setLayout(new GridBagLayout());
+	GridBagConstraints pos = new GridBagConstraints();
+	JLabel lname = new JLabel("Name: ");
+	pos.gridx=0;
+	pos.gridy=0;
+	panel.add(lname,pos);
+	JTextField name = new JTextField(15);
+	pos.gridx=1;
+	pos.gridy=0;
+	panel.add(name,pos);
+	JLabel lsurname = new JLabel("Surname: ");
+	pos.gridx=0;
+	pos.gridy=1;
+	panel.add(lsurname,pos);
+	JTextField surname = new JTextField(15);
+	pos.gridx=1;
+	pos.gridy=1;
+	panel.add(surname,pos);
+	JLabel lyear = new JLabel("Year of study: ");
+	pos.gridx=0;
+	pos.gridy=2;
+	panel.add(lyear,pos);
+	String years[] = {"1", "2", "3", "4"};
+	JComboBox year = new JComboBox(years);
+	pos.gridx=1;
+	pos.gridy=2;
+	panel.add(year,pos);
+	JLabel lfaculty = new JLabel("Faculty: ");
+	pos.gridx=0;
+	pos.gridy=3;
+	panel.add(lfaculty,pos);
+	String faculties[] = {"ETTI", "AC", "Constructii", "IE", "Robotica"};
+	JComboBox faculty = new JComboBox(faculties);
+	pos.gridx=1;
+	pos.gridy=3;
+	panel.add(faculty,pos);
+	JLabel lfinancing = new JLabel("Financing: ");
+	pos.gridx=0;
+	pos.gridy=4;
+	panel.add(lfinancing,pos);
+	pos.gridx=1;
+	pos.gridy=4;
+	CheckboxGroup cbg=new CheckboxGroup();
+	Checkbox tax = new Checkbox("Tax",cbg,false);
+	tax.setEnabled(true);
+	panel.add(tax,pos);
+	pos.gridx=2;
+	pos.gridy=4;
+	Checkbox budget = new Checkbox("Budget",cbg,false);
+	budget.setEnabled(true);
+	panel.add(budget,pos);
+	JLabel lcourse = new JLabel("Course: ");
+	pos.gridx=0;
+	pos.gridy=5;
+	panel.add(lcourse,pos);
+	String courses[] = {"Software Engineering", "CAD", "Signals and Systems", "C/C++", "Python"};
+	JComboBox course = new JComboBox(courses);
+	pos.gridx=1;
+	pos.gridy=5;
+	panel.add(course,pos);
+	JButton button = new JButton("SIGN-UP");
+	Dimension dim = new Dimension(100,50);
+	button.setPreferredSize(dim);
+	JTextArea results = new JTextArea();
+	button.addActionListener(new ActionListener(){
+		   public void actionPerformed(ActionEvent ae){
+			 String rname = name.getText();
+			 String rsurname = surname.getText();
+			 String ryear = (String)year.getSelectedItem();
+			 String rfaculty = (String)faculty.getSelectedItem();
+			 String rcourse = (String)course.getSelectedItem();
+			 if(tax.getState()==true) 
+				 results.setText("The name: "+rname+" "+rsurname+"\n"+"The year: "+ryear+"\n"+"The faculty: "+rfaculty+"\n"+"Studying: "+rcourse+"\nTAX");
+			 else 
+			 if(budget.getState()==true)
+				 results.setText("The name: "+rname+" "+rsurname+"\n"+"The year: "+ryear+"\n"+"The faculty: "+rfaculty+"\n"+"Studying: "+rcourse+"\nBUDGET");
+		   }
+		   });
+	pos.gridx=4;
+	pos.gridy=6;
+	panel.add(button,pos);
+	pos.gridx=0;
+	pos.gridy=7;
+	results.setEditable(false);
+	panel.add(results,pos);
+	frame.add(panel);
+	frame.pack();
+	frame.setSize(500,500);
+	frame.setVisible(true);
+}
+}

@@ -1,0 +1,114 @@
+/* Write a class named Student which has the private fields name, group,
+average, and getter / setter methods for the fields. In main() mathod, 
+placed in another class, create a sortedSet collection, with Student type 
+objects, initialized with values read from the keyboard, which will keep 
+the elements in descending order by average and ascending by name
+(those that have the same average will be in alphabetic order). Browse 
+the collection using for-loop and display all the items. Then browse the 
+collection with an iterator and display all students with average> = 8. 
+Browse the collection with forEach () and display all student data in a particular group.
+Vlad Coman, Group 2024
+24.04.2020
+*/
+package Laboratory07;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.SortedSet;
+import java.util.TreeSet;
+class Student{
+	private String name;
+	private int group;
+	private double average;
+	Student(String name, int group, double average){
+		this.name=name;
+		this.group=group;
+		this.average=average;
+	}
+	Student(){
+		this.name=null;
+		this.group=0;
+		this.average=0;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getGroup() {
+		return group;
+	}
+	public void setGroup(int group) {
+		this.group = group;
+	}
+	public double getAverage() {
+		return average;
+	}
+	public void setAverage(double average) {
+		this.average = average;
+	}
+	public String toString()
+	{
+	return new String("Name: "+name+" Group: "+group+" Average: "+average);
+	}
+}
+class SComparator implements Comparator<Student> {
+	 public int compare(Student s1, Student s2)
+	 {
+	 if(s1.getName().compareTo(s2.getName())>0)
+		 return -1;
+	 if(s1.getName().compareTo(s2.getName())<0) 
+		 return 1;
+	 if((s1.getAverage()-s2.getAverage())<0)
+		 return -1;
+	 if((s1.getAverage()-s2.getAverage())>0)
+		 return 1;
+	 return 0;
+	 }
+	} 
+public class Main {
+	private static Scanner cin;
+	public static void main(String []args) {
+	cin=new Scanner(System.in);	
+	String name=new String();
+	int group;
+	double average;
+	int n;
+	SortedSet <Student>set = new TreeSet< >(new SComparator());
+	System.out.println("Introduce the number of students: ");
+	n=cin.nextInt();
+	Student []arr=new Student[n];
+	for(int i=0;i<arr.length;i++) {
+		arr[i]=new Student();
+		System.out.println("Introduce the name for student "+(i+1)+": ");
+		name=cin.next();
+		arr[i].setName(name);
+		System.out.println("Introduce the group for student "+(i+1)+": ");
+		group=cin.nextInt();
+		arr[i].setGroup(group);
+		System.out.println("Introduce the average for student "+(i+1)+": ");
+		average=cin.nextDouble();
+		arr[i].setAverage(average);
+		set.add(arr[i]);
+	}
+	System.out.println("The elements before the sorting are: ");
+	for(int i=0;i<arr.length;i++) {
+		System.out.println(arr[i]);
+	}
+	System.out.println("The elements after sorting are: ");
+	Iterator <Student>it = set.iterator();
+	 while (it.hasNext()) {
+	 Student element = it.next();
+	 if(element.getAverage()>=8)
+	 System.out.println(element);
+	}
+	 System.out.println("Which group do you want to be shown?");
+	 int m;
+	 m=cin.nextInt();
+	 for(Student it1:arr) {
+		if(it1.getGroup()==m)
+			System.out.println(it1);
+	 }
+	}
+}

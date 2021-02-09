@@ -1,0 +1,228 @@
+/* Using a KB reading mechanism (BufferedReader/InputStreamReader) input: a message of String type, a day as an
+integer, a month as a String and a year as an integer variable. The process will end by passing to a new line, or by typing
+a special String. Separate and display the tokens on different rows.
+Recommendation: use the StreamTokenizer class, the attributes sval, nval and the TT_EOL constant.
+Consider the case in which the application is not aware of the entered data type (numbers, words). Use the constants
+TT_NUMBER, TT_WORD.
+Vlad Coman, Group 2024
+02.05.2020
+ * */
+import java.io.*;
+public class Lab08{
+	public static void main(String []args) {
+		try {
+			BufferedReader cin=new BufferedReader (new InputStreamReader(System.in));
+			StreamTokenizer tok=new StreamTokenizer(cin);
+			while(tok.nextToken() != StreamTokenizer.TT_EOL) {
+			if(tok.ttype == StreamTokenizer.TT_WORD)
+				System.out.println("Cuvant: "+tok.sval);
+			if(tok.ttype == StreamTokenizer.TT_NUMBER)
+				System.out.println("Numar: "+tok.nval);
+			}
+		cin.close();
+		}catch (IOException e) {
+			System.out.println("Eroare la citire!"+e);
+		}
+	}
+}
+
+/* Implement the previous problem using a file as input source.
+Vlad Coman, Group 2024
+02.05.2020
+ * */
+import java.io.*;
+public class Lab08{
+	public static void main(String []args) {
+		try {
+			FileReader cin=new FileReader("test.txt");
+			StreamTokenizer tok=new StreamTokenizer(cin);
+			while(tok.nextToken() != StreamTokenizer.TT_EOF) {
+			if(tok.ttype == StreamTokenizer.TT_WORD)
+				System.out.println("Cuvant: "+tok.sval);
+			if(tok.ttype == StreamTokenizer.TT_NUMBER)
+				System.out.println("Numar: "+tok.nval);
+			}
+		cin.close();
+		}catch (IOException e) {
+			System.out.println("Eroare la citire!"+e);
+		}
+	}
+}
+
+
+/*  You are given a binary file which contains a sequence of characters 
+ * representing a private Bitcoin key (256 characters). From the keyboard 
+ * read a sequence of characters which represents the public key for a 
+ * Bitcoin. Generate the transaction id for this information by using the 
+ * XOR bitwise operator. Write the resulting number in binary file. 
+Vlad Coman, Group 2024
+02.05.2020
+ * */
+import java.io.*;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+public class Lab08{
+	private static Scanner cin=new Scanner(System.in);
+	public static void main(String []args) {
+		int day, month, year;
+		String new_month=new String();
+		String text=new String();
+		System.out.println("Introduceti data calendaristica: ");
+		while(text.compareTo("x")!=0 || text.compareTo("X")!=0) {
+			text=cin.next();
+			StringTokenizer sep=new StringTokenizer(text,"/");
+			if(text.compareTo("x")==0 || text.compareTo("X")==0) {
+				System.out.println("Ati iesit din program!");
+				System.exit(0);
+				}
+			day=Integer.parseInt(sep.nextToken());
+			month=Integer.parseInt(sep.nextToken());
+			year=Integer.parseInt(sep.nextToken());
+			switch(month) {
+			case 1:
+				new_month="January";
+				break;
+			case 2:
+				new_month="February";
+				break;
+			case 3:
+				new_month="March";
+				break;
+			case 4:
+				new_month="April";
+				break;
+			case 5:
+				new_month="May";
+				break;
+			case 6:
+				new_month="June";
+				break;
+			case 7:
+				new_month="July";
+				break;
+			case 8:
+				new_month="August";
+				break;
+			case 9:
+				new_month="September";
+				break;
+			case 10:
+				new_month="October";
+				break;
+			case 11:
+				new_month="November";
+				break;
+			case 12:
+				new_month="December";
+				break;
+			default:
+				System.out.println("Aceasta nu este o luna calendaristica!");
+				System.exit(0);
+				break;
+			}
+			System.out.println(day+" "+new_month+" "+year);
+			System.out.println("Introduceti data calendaristica: ");
+		}
+	}
+}
+
+
+/*  You are given a binary file which contains a sequence of characters 
+ * representing a private Bitcoin key (256 characters). From the keyboard 
+ * read a sequence of characters which represents the public key for a 
+ * Bitcoin. Generate the transaction id for this information by using the 
+ * XOR bitwise operator. Write the resulting number in binary file. 
+Vlad Coman, Group 2024
+02.05.2020
+ * */
+import java.io.*;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.util.Arrays;
+public class Lab08{
+	private static Scanner cin=new Scanner(System.in);
+	public static void main(String []args) {
+		File outputFile = new File("test.txt");
+		String text=new String();
+		System.out.println("Introduce the key for Bitcoin(9 letters): ");
+		text=cin.next();
+		byte []byteArr=text.getBytes();
+		System.out.println(Arrays.toString(byteArr)+" ");
+		String mask="eagleeyes";
+		byte []maskArr=mask.getBytes();
+		for(int i=0;i<byteArr.length;i++) {
+			byteArr[i]=(byte)(byteArr[i] ^ maskArr[i]);
+		}
+		System.out.println("The transaction id(masked) is: ");
+		System.out.println(Arrays.toString(byteArr)+" ");
+		try{
+			FileOutputStream fos = new FileOutputStream(outputFile);
+			fos.write(byteArr);
+			fos.close();
+		}
+			catch(IOException e){
+			System.out .println("Eroare: "+e.toString ());
+			}
+			System.out .println("Copiere terminata...");
+
+	}
+}
+
+/*  Write a Java application which reads a set of text files which contain 
+ * student information from the current study year. The files are stored 
+ * locally under the names Year_Y_Group_XXXX.txt . Agregate the information 
+ * in this file using a SequenceInputStream and generate a new file which 
+ * contains all the students ordered alphabetically.
+Vlad Coman, Group 2024
+02.05.2020
+ * */
+import java.util.*;
+import java.io.*;
+public class Lab08 {
+	public static void main(String args[]) {
+		FileInputStream f1 = null;
+		FileInputStream f2 = null;
+		FileInputStream f3 = null;
+		FileInputStream f4 = null;
+		SequenceInputStream f = null;
+		SequenceInputStream g = null;
+		SequenceInputStream namesfile=null;
+		int n = 0;
+		int m = 0;
+		String names[] = new String[200];
+		try {
+			f1 = new FileInputStream("Year_2_Group_2021.txt");
+			f2 = new FileInputStream("Year_2_Group_2022.txt");
+			f3 = new FileInputStream("Year_2_Group_2023.txt");
+			f4 = new FileInputStream("Year_2_Group_2024.txt");
+			f = new SequenceInputStream(f1, f2);
+			g = new SequenceInputStream(f3, f4);
+			namesfile = new SequenceInputStream(f,g);
+			StreamTokenizer str = new StreamTokenizer(namesfile);
+			while (str.nextToken() != StreamTokenizer.TT_EOF) {
+				names[n] = str.sval;
+				n++;
+			}
+			Scanner scan = new Scanner(namesfile);
+			while (scan.hasNext()) {
+				names[m] = scan.next();
+				m++;
+			}
+			for (int i = 0; i < names.length - 1; i++)
+				for (int k = i + 1; k < names.length; k++) {
+					if (names[i].compareTo(names[k]) > 0) {
+						String temp = names[i];
+						names[i] = names[k];
+						names[k] = temp;
+					}
+				}
+			FileOutputStream fos = new FileOutputStream("final.txt");
+			for (int i = 0; i < n; i++)
+				fos.write(names[i].getBytes());
+			fos.close();
+		} catch (IOException e) {
+			System.out.println("Error" + e.toString());
+		}
+
+	}
+}

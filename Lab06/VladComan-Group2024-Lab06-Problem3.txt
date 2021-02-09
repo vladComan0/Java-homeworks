@@ -1,0 +1,94 @@
+/* Define a package that declares an interface named Int1 (2 integer 
+ * variables and a sum() method that returns the sum
+of 2 integer values). Include in the same package a class 
+named Class1 (2 protected double variables, constructor, setters
+and getters). In another source file, add in the same package 
+a new interface named Int2 (2 double variables and a
+method named product() that returns the product of 2 double values).
+Implement a distinct source file and import everything from 
+the defined package. Define a class named Class2 that is
+derived from Class1 and implements both interfaces Int1 and Int2.
+Instantiate Class2 and call the defined methods for 
+determining the sum and product of some values read from thekeyboard
+Vlad Coman, Group 2024
+18.04.2020
+*/
+package interfaces;
+
+import java.util.Scanner;
+
+class Class2 extends Class1 implements Int1, Int2{
+
+	Class2(double a, double b) {
+		super(a, b);
+	}
+	Class2(){
+		super();
+	}
+	@Override
+	public double product(double a, double b) {
+		return a*b;
+	}
+
+	@Override
+	public int sum(int a, int b) {
+		return a+b;
+	}
+}
+public class Main {
+	private static Scanner cin;
+	public static void main(String []args) {
+		cin=new Scanner(System.in);
+	Class2 ob1=new Class2();
+	double a, b;
+	System.out.println("Introduceti a si b (double): ");
+	a=cin.nextDouble();
+	b=cin.nextDouble();
+	int x, y;
+	System.out.println("Introduceti x si y (int): ");
+	x=cin.nextInt();
+	y=cin.nextInt();
+	ob1.setA(a);
+	ob1.setB(b);
+	System.out.println("Produsul numerelor este: "+ob1.product(a, b));
+	System.out.println("Suma numerelor este: "+ob1.sum(x, y));
+	}
+}
+package interfaces;
+
+public interface Int1 {
+	public static final int a = 0;
+	public static final int b = 0;
+	public int sum(int a, int b);
+}
+package interfaces;
+
+public class Class1 {
+	protected double a, b;
+	Class1(double a, double b){
+		this.a=a;
+		this.b=b;
+	}
+	Class1(){
+		this.a=0;
+		this.b=0;
+	}
+	public void setA(double a) {
+		this.a=a;
+	}
+	public double getA() {
+		return a;
+	}
+	public void setB(double b) {
+		this.b=b;
+	}
+	public double getB() {
+		return b;
+	}
+}
+package interfaces;
+
+public interface Int2 {
+	public static final double a=0, b=0;
+	public double product(double a, double b);
+}

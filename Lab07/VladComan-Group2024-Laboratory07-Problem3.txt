@@ -1,0 +1,160 @@
+/* Build an application which contains a generic class SetterGetter 
+ * which allows the user to set() and get() the attribute values for 
+ * different types of objects. For example, given the classes Kid, 
+ * Adult and Retired, enable the class to set and get the names and ages 
+ * of the associated objects. Create collections with unique entries of 
+ * type Kid, Adult and Retired, and which are populated with data read 
+ * from the console. Print the read data using different methods.
+ * Vlad Coman, Group 2024
+ * 24.04.2020
+ * */
+package Laboratory07;
+import java.util.Scanner;
+class Generic <T1 extends Kid, T2 extends Adult, T3 extends Retired> {
+	private T1 kid;
+	private T2 adult;
+	private T3 retired;
+	Generic(T1 kid, T2 adult, T3 retired){
+		this.kid=kid;
+		this.adult=adult;
+		this.retired=retired;
+	}
+	Generic(){
+		kid=null;
+		adult=null;
+		retired=null;
+	}
+	public T1 getKid() {
+		return kid;
+	}
+	public void setNameKid(T1 kid, String name) {
+		kid.name=name;
+	}
+	public void setAgeKid(T1 kid, int age) {
+		kid.age=age;
+	}
+	public T2 getAdult() {
+		return adult;
+	}
+	public void setNameAdult(T2 adult, String name) {
+		adult.name=name;
+	}
+	public void setAgeAdult(T2 adult, int age) {
+		adult.age=age;
+	}
+	public T3 getRetired() {
+		return retired;
+	}
+	public void setNameRetired(T3 retired, String name) {
+		retired.name=name;
+	}
+	public void setAgeRetired(T3 retired, int age) {
+		retired.age=age;
+	}
+}
+class Kid{
+	String name;
+	int age;
+	Kid(){
+		this.name=null;
+		this.age=0;
+	}
+	Kid(String name, int age){
+		this.setName(name);
+		this.setAge(age);
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+}
+class Adult{
+	String name;
+	int age;
+	Adult(String name, int age){
+		this.setName(name);
+		this.setAge(age);
+	}
+	Adult(){
+		this.name=null;
+		this.age=0;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+}
+class Retired{
+	String name;
+	int age;
+	Retired(String name, int age){
+		this.setName(name);
+		this.setAge(age);
+	}
+	Retired(){
+		this.name=null;
+		this.age=0;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+}
+public class Main {
+	private static Scanner cin;
+	public static void main(String []args) {
+		cin=new Scanner(System.in);	
+		Generic<Kid, Adult, Retired> kid = new Generic<Kid, Adult, Retired>();
+		Generic<Kid, Adult, Retired> adult = new Generic<Kid, Adult, Retired>();
+		Generic<Kid, Adult, Retired> retired = new Generic<Kid, Adult, Retired>();
+		Kid ob1=new Kid();
+		Adult ob2=new Adult();
+		Retired ob3=new Retired();
+		String namekid=new String();
+		String nameadult=new String();
+		String nameretired=new String();
+		int agekid, ageadult, ageretired;
+		System.out.println("Introduce the name of the kid: ");
+		namekid=cin.next();
+		kid.setNameKid(ob1, namekid);
+		System.out.println("Introduce the name of the adult: ");
+		nameadult=cin.next();
+		adult.setNameAdult(ob2, nameadult);
+		System.out.println("Introduce the name of the retired: ");
+		nameretired=cin.next();
+		retired.setNameRetired(ob3, nameretired);
+		System.out.println("Introduce the age of the kid: ");
+		agekid=cin.nextInt();
+		kid.setAgeKid(ob1, agekid);
+		System.out.println("Introduce the age of the adult: ");
+		ageadult=cin.nextInt();
+		adult.setAgeAdult(ob2, ageadult);
+		System.out.println("Introduce the age of the retired: ");
+		ageretired=cin.nextInt();
+		retired.setAgeRetired(ob3, ageretired);
+	}
+}

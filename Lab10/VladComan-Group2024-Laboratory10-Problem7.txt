@@ -1,0 +1,54 @@
+/*Implement a Frame application that fills a visual container with 
+circles having randomly generated radii. The circles are tangent and 
+have random colors.
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Random;
+class MyFrame extends Frame {
+	private static final long serialVersionUID = 1L;
+	MyFrame(String title){
+	super(title);
+	MyCanvas canvas=new MyCanvas();
+	add(canvas);
+	setLayout(new FlowLayout());
+	this.addWindowListener(new ExitListener());
+	setSize(600, 530);
+	setVisible(true);
+	}
+	}
+class ExitListener extends WindowAdapter {//closing with adapter class
+	 @Override
+	 public void windowClosing(WindowEvent event) {
+	 System.exit(0);
+	}
+}
+class MyCanvas extends Canvas{
+	int x, y;
+	private static final long serialVersionUID = 1L;
+	public MyCanvas() {
+		this.setSize(new Dimension(400,400));
+		this.setBackground(new Color(200,200,200));
+	}
+	public void paint(Graphics g) {
+		Random rand=new Random();
+		int radius=rand.nextInt(400);
+		int red, green, blue;
+		for(int i=0;i<400;i+=radius)
+			for(int j=0;j<400;j+=radius) {
+			red=rand.nextInt(255);
+			green=rand.nextInt(255);
+			blue=rand.nextInt(255);
+			g.setColor(new Color(red,green,blue));
+			g.fillOval(i, j, radius, radius);
+			}
+		}
+}
+public class Main{
+public static void main(String args[]) {
+	MyFrame frame = new MyFrame("Color Palette");
+}
+}

@@ -1,0 +1,549 @@
+package Laboratory07;
+/* Create an interface called Generator<T> with a single method next(T var).
+ * Implement the interface so that you can generate the following values 
+ * when applying it to certain data types (Integer, Character, etc.). 
+ * The class will be instantiated in the main( ) method, located 
+ * in a separate class.
+ * Vlad Coman, Group 2024
+ * 24.04.2020
+ */
+package Laboratory07;
+public interface Generator <T> {
+	public void next(T var);
+}
+package Laboratory07;
+import java.util.Scanner;
+public class Implementation <T> implements Generator <T>{
+	public void next(T var) {
+		if(var.getClass()==Integer.class) {
+			System.out.println("The next element is (integer): ");
+			System.out.print((int)var+1+"\n");
+		}
+		if(var.getClass()==Character.class) {
+			System.out.println("The next element is (character): ");
+			System.out.print((char)var+1+"\n");
+		}
+		if(var.getClass()==Double.class) {
+			System.out.println("The next element is (double): ");
+			System.out.print((double)var+1+"\n");
+		}
+	}
+}
+
+import java.util.Scanner;
+
+public class Main {
+	private static Scanner cin;
+	public static void main(String []args) {
+		int x;
+		char c;
+		double d;
+		cin=new Scanner(System.in);
+		Implementation<Integer> ob1=new Implementation<Integer>();
+		Implementation<Character> ob2=new Implementation<Character>();
+		Implementation<Double> ob3=new Implementation<Double>();
+		System.out.println("Introduce the value(integer): ");
+		x=cin.nextInt();
+		ob1.next(x);
+		System.out.println("Introduce the value(character): ");
+		c=cin.next().charAt(0);
+		ob2.next(c);
+		System.out.println("Introduce the value(double): ");
+		d=cin.nextDouble();
+		ob3.next(d);
+	}
+}
+
+
+/* Write a class called Calculator which has the methods to do addition, 
+ * subtraction, multiplication and division. The methods will take generic 
+ * input variables and will return the corresponding type. For example, the 
+ * sum of two integers should return an integer, and for floats it should 
+ * return a float. Same for division. Adding and subtracting is allowed for
+ * String variables as well, but the multiplication and division will print 
+ * an error message.
+ * Vlad Coman, Group 2024
+ * 24.04.2020
+ * */
+package Laboratory07;
+import java.util.Scanner;
+class Calculator <T>{
+	public T add(T x, T y){
+		T sum=null;
+		if(x.getClass()==Integer.class && y.getClass()==Integer.class) {
+			sum=(T) (Integer) ( (Integer) x + (Integer) y );
+			return sum;
+		}
+		if(x.getClass()==Double.class && y.getClass()==Double.class) {
+			sum=(T) (Double) ( (Double) x + (Double) y );
+			return sum;
+		}
+		if(x.getClass()==String.class && y.getClass()==String.class) {
+			sum=(T) (String) ( (String) x + (String) y );
+			return sum;
+		}
+		String error="The two types are not correct";
+		sum=(T)(String)((String)error);
+		return sum;
+	}
+	public T sub(T x, T y) {
+		T dif=null;
+		String error=null;
+		if(x.getClass()==Integer.class && y.getClass()==Integer.class) {
+			dif=(T) (Integer) ( (Integer) x - (Integer) y );
+			return dif;
+		}
+		if(x.getClass()==Double.class && y.getClass()==Double.class) {
+			dif=(T) (Double) ( (Double) x - (Double) y );
+			return dif;
+		}
+		if(x.getClass()==String.class && y.getClass()==String.class) {
+			error="We cannot substract 2 Strings!";
+			dif=(T) (String) ( (String) error);
+			return dif;
+		}
+		error="The two types are not correct!";
+		dif=(T) (String) ( (String) error);
+		return dif;
+	}
+	public T mult(T x, T y){
+		T p=null;
+		String error=null;
+		if(x.getClass()==Integer.class && y.getClass()==Integer.class) {
+			p=(T) (Integer) ( (Integer) x * (Integer) y );
+			return p;
+		}
+		if(x.getClass()==Double.class && y.getClass()==Double.class) {
+			p=(T) (Double) ( (Double) x * (Double) y );
+			return p;
+		}
+		if(x.getClass()==String.class && y.getClass()==String.class) {
+			error="We cannot multiply 2 Strings!";
+			p=(T) (String) ( (String) error);
+			return p;
+		}
+		error="The two types are not correct";
+		p=(T)(String)((String)error);
+		return p;
+	}
+	public T div(T x, T y){
+		T p=null;
+		String error=null;
+		if(x.getClass()==Integer.class && y.getClass()==Integer.class) {
+			p=(T) (Integer) ( (Integer) x / (Integer) y );
+			return p;
+		}
+		if(x.getClass()==Double.class && y.getClass()==Double.class) {
+			p=(T) (Double) ( (Double) x / (Double) y );
+			return p;
+		}
+		if(x.getClass()==String.class && y.getClass()==String.class) {
+			error="We cannot divide 2 Strings!";
+			p=(T) (String) ( (String) error);
+			return p;
+		}
+		error="The two types are not correct";
+		p=(T)(String)((String)error);
+		return p;
+	}
+}
+public class Main {
+	private static Scanner cin;
+	public static void main(String []args) {
+		cin=new Scanner(System.in);
+		Calculator <Integer> ob1 = new Calculator<Integer>();
+		Calculator <Double> ob2 = new Calculator<Double>();
+		Calculator <String> ob3 = new Calculator<String>();
+		int x1, y1;
+		double x2, y2;
+		String x3=new String();
+		String y3=new String();
+		System.out.println("Introduce two int numbers: ");
+		x1=cin.nextInt();
+		y1=cin.nextInt();
+		System.out.println("Introduce two double numbers: ");
+		x2=cin.nextDouble();
+		y2=cin.nextDouble();
+		System.out.println("Introduce two Strings: ");
+		x3=cin.next();
+		y3=cin.next();
+		System.out.println("The sum of the integers: "+ob1.add(x1, y1));
+		System.out.println("The sum of the doubles: "+ob2.add(x2, y2));
+		System.out.println("The sum of the Strings(concatenated): "+ob3.add(x3, y3));
+		System.out.println("The difference of the integers: "+ob1.sub(x1, y1));
+		System.out.println("The difference of the doubles: "+ob2.sub(x2, y2));
+		System.out.println("The difference of the Strings(error): "+ob3.sub(x3, y3));
+		System.out.println("The multiplication of the integers: "+ob1.mult(x1, y1));
+		System.out.println("The multiplication of the doubles: "+ob2.mult(x2, y2));
+		System.out.println("The multiplication of the Strings(error): "+ob3.mult(x3, y3));
+		System.out.println("The division of the integers: "+ob1.div(x1, y1));
+		System.out.println("The division of the doubles: "+ob2.div(x2, y2));
+		System.out.println("The division of the Strings(error): "+ob3.div(x3, y3));
+	}
+}
+
+
+/* Build an application which contains a generic class SetterGetter 
+ * which allows the user to set() and get() the attribute values for 
+ * different types of objects. For example, given the classes Kid, 
+ * Adult and Retired, enable the class to set and get the names and ages 
+ * of the associated objects. Create collections with unique entries of 
+ * type Kid, Adult and Retired, and which are populated with data read 
+ * from the console. Print the read data using different methods.
+ * Vlad Coman, Group 2024
+ * 24.04.2020
+ * */
+package Laboratory07;
+import java.util.Scanner;
+class Generic <T1 extends Kid, T2 extends Adult, T3 extends Retired> {
+	private T1 kid;
+	private T2 adult;
+	private T3 retired;
+	Generic(T1 kid, T2 adult, T3 retired){
+		this.kid=kid;
+		this.adult=adult;
+		this.retired=retired;
+	}
+	Generic(){
+		kid=null;
+		adult=null;
+		retired=null;
+	}
+	public T1 getKid() {
+		return kid;
+	}
+	public void setNameKid(T1 kid, String name) {
+		kid.name=name;
+	}
+	public void setAgeKid(T1 kid, int age) {
+		kid.age=age;
+	}
+	public T2 getAdult() {
+		return adult;
+	}
+	public void setNameAdult(T2 adult, String name) {
+		adult.name=name;
+	}
+	public void setAgeAdult(T2 adult, int age) {
+		adult.age=age;
+	}
+	public T3 getRetired() {
+		return retired;
+	}
+	public void setNameRetired(T3 retired, String name) {
+		retired.name=name;
+	}
+	public void setAgeRetired(T3 retired, int age) {
+		retired.age=age;
+	}
+}
+class Kid{
+	String name;
+	int age;
+	Kid(){
+		this.name=null;
+		this.age=0;
+	}
+	Kid(String name, int age){
+		this.setName(name);
+		this.setAge(age);
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+}
+class Adult{
+	String name;
+	int age;
+	Adult(String name, int age){
+		this.setName(name);
+		this.setAge(age);
+	}
+	Adult(){
+		this.name=null;
+		this.age=0;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+}
+class Retired{
+	String name;
+	int age;
+	Retired(String name, int age){
+		this.setName(name);
+		this.setAge(age);
+	}
+	Retired(){
+		this.name=null;
+		this.age=0;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+}
+public class Main {
+	private static Scanner cin;
+	public static void main(String []args) {
+		cin=new Scanner(System.in);	
+		Generic<Kid, Adult, Retired> kid = new Generic<Kid, Adult, Retired>();
+		Generic<Kid, Adult, Retired> adult = new Generic<Kid, Adult, Retired>();
+		Generic<Kid, Adult, Retired> retired = new Generic<Kid, Adult, Retired>();
+		Kid ob1=new Kid();
+		Adult ob2=new Adult();
+		Retired ob3=new Retired();
+		String namekid=new String();
+		String nameadult=new String();
+		String nameretired=new String();
+		int agekid, ageadult, ageretired;
+		System.out.println("Introduce the name of the kid: ");
+		namekid=cin.next();
+		kid.setNameKid(ob1, namekid);
+		System.out.println("Introduce the name of the adult: ");
+		nameadult=cin.next();
+		adult.setNameAdult(ob2, nameadult);
+		System.out.println("Introduce the name of the retired: ");
+		nameretired=cin.next();
+		retired.setNameRetired(ob3, nameretired);
+		System.out.println("Introduce the age of the kid: ");
+		agekid=cin.nextInt();
+		kid.setAgeKid(ob1, agekid);
+		System.out.println("Introduce the age of the adult: ");
+		ageadult=cin.nextInt();
+		adult.setAgeAdult(ob2, ageadult);
+		System.out.println("Introduce the age of the retired: ");
+		ageretired=cin.nextInt();
+		retired.setAgeRetired(ob3, ageretired);
+	}
+}
+
+
+/* Implement a class called UserFile (name, extension, type, size 
+ * in bytes, constructors, mutators, accesors). The types of files are 
+ * predefined and stored in a Hashtable object (for example "image"->0, 
+ * "text"->1, "application"->2, etc.) Create a list of objects from this 
+ * class and read from the keyboard the associated info. Print all the 
+ * specific extensions of the predefined file types. Order the file list 
+ * based on size and print the result
+ * Vlad Coman, Group 2024
+ * 24.04.2020
+ * */
+package Laboratory07;
+import java.util.Hashtable;
+import java.util.Scanner;
+class UserFile{
+	private String name;
+	private String extension;
+	private Hashtable<Integer,String> type;
+	private byte size;
+	UserFile(String name, String extension, Hashtable<Integer, String> type, byte size){
+		this.name=name;
+		this.extension=extension;
+		this.type=type;
+		this.size=size;
+	}
+	UserFile(){
+		this.name=null;
+		this.extension=null;
+		this.type=null;
+		this.size=0;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getExtension() {
+		return extension;
+	}
+	public void setExtension(String extension) {
+		this.extension = extension;
+	}
+	public Hashtable<Integer, String> getType() {
+		return type;
+	}
+	public void setType(Hashtable<Integer, String> type) {
+		this.type = type;
+	}
+	public byte getSize() {
+		return size;
+	}
+	public void setSize(byte size) {
+		this.size = size;
+	}
+}
+public class Main {
+	private static Scanner cin;
+	public static void main(String []args) {
+	cin=new Scanner(System.in);	
+	String name=new String();
+	String extension=new String();
+	Hashtable<Integer,String> type = new Hashtable<Integer,String>();
+	byte size;
+	UserFile user=new UserFile();
+	type.put(0, "image");
+	type.put(1, "text");
+	type.put(2, "application");
+	type.put(3, "executable");
+	System.out.println("Introduce the name of the user: ");
+	name=cin.next();
+	user.setName(name);
+	System.out.println("Introduce the extension: ");
+	extension=cin.next();
+	user.setExtension(extension);
+	System.out.println("Introduce the type (0=image, 1=text, 2=application, 3=executable: ");
+	Integer n=cin.nextInt();
+	user.setType(type.get(n));
+	size=UserFile.getObjectSize(user);
+	user.setSize(size);
+	System.out.println("The data from the user is: ");
+	System.out.println("Name: "+user.getName());
+	System.out.println("Extension: "+user.getExtension());
+	System.out.println("Type: "+user.getType());
+	System.out.println("The size of the object (bytes): "+user.getSize());
+	}
+}
+
+
+/* Write a class named Student which has the private fields name, group,
+average, and getter / setter methods for the fields. In main() mathod, 
+placed in another class, create a sortedSet collection, with Student type 
+objects, initialized with values read from the keyboard, which will keep 
+the elements in descending order by average and ascending by name
+(those that have the same average will be in alphabetic order). Browse 
+the collection using for-loop and display all the items. Then browse the 
+collection with an iterator and display all students with average> = 8. 
+Browse the collection with forEach () and display all student data in a particular group.
+Vlad Coman, Group 2024
+24.04.2020
+*/
+package Laboratory07;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.SortedSet;
+import java.util.TreeSet;
+class Student{
+	private String name;
+	private int group;
+	private double average;
+	Student(String name, int group, double average){
+		this.name=name;
+		this.group=group;
+		this.average=average;
+	}
+	Student(){
+		this.name=null;
+		this.group=0;
+		this.average=0;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getGroup() {
+		return group;
+	}
+	public void setGroup(int group) {
+		this.group = group;
+	}
+	public double getAverage() {
+		return average;
+	}
+	public void setAverage(double average) {
+		this.average = average;
+	}
+	public String toString()
+	{
+	return new String("Name: "+name+" Group: "+group+" Average: "+average);
+	}
+}
+class SComparator implements Comparator<Student> {
+	 public int compare(Student s1, Student s2)
+	 {
+	 if(s1.getName().compareTo(s2.getName())>0)
+		 return -1;
+	 if(s1.getName().compareTo(s2.getName())<0) 
+		 return 1;
+	 if((s1.getAverage()-s2.getAverage())<0)
+		 return -1;
+	 if((s1.getAverage()-s2.getAverage())>0)
+		 return 1;
+	 return 0;
+	 }
+	} 
+public class Main {
+	private static Scanner cin;
+	public static void main(String []args) {
+	cin=new Scanner(System.in);	
+	String name=new String();
+	int group;
+	double average;
+	int n;
+	SortedSet <Student>set = new TreeSet< >(new SComparator());
+	System.out.println("Introduce the number of students: ");
+	n=cin.nextInt();
+	Student []arr=new Student[n];
+	for(int i=0;i<arr.length;i++) {
+		arr[i]=new Student();
+		System.out.println("Introduce the name for student "+(i+1)+": ");
+		name=cin.next();
+		arr[i].setName(name);
+		System.out.println("Introduce the group for student "+(i+1)+": ");
+		group=cin.nextInt();
+		arr[i].setGroup(group);
+		System.out.println("Introduce the average for student "+(i+1)+": ");
+		average=cin.nextDouble();
+		arr[i].setAverage(average);
+		set.add(arr[i]);
+	}
+	System.out.println("The elements before the sorting are: ");
+	for(int i=0;i<arr.length;i++) {
+		System.out.println(arr[i]);
+	}
+	System.out.println("The elements after sorting are: ");
+	Iterator <Student>it = set.iterator();
+	 while (it.hasNext()) {
+	 Student element = it.next();
+	 if(element.getAverage()>=8)
+	 System.out.println(element);
+	}
+	 System.out.println("Which group do you want to be shown?");
+	 int m;
+	 m=cin.nextInt();
+	 for(Student it1:arr) {
+		if(it1.getGroup()==m)
+			System.out.println(it1);
+	 }
+	}
+}

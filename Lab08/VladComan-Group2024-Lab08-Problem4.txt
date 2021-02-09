@@ -1,0 +1,40 @@
+/*  You are given a binary file which contains a sequence of characters 
+ * representing a private Bitcoin key (256 characters). From the keyboard 
+ * read a sequence of characters which represents the public key for a 
+ * Bitcoin. Generate the transaction id for this information by using the 
+ * XOR bitwise operator. Write the resulting number in binary file. 
+Vlad Coman, Group 2024
+02.05.2020
+ * */
+import java.io.*;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.util.Arrays;
+public class Lab08{
+	private static Scanner cin=new Scanner(System.in);
+	public static void main(String []args) {
+		File outputFile = new File("test.txt");
+		String text=new String();
+		System.out.println("Introduce the key for Bitcoin(9 letters): ");
+		text=cin.next();
+		byte []byteArr=text.getBytes();
+		System.out.println(Arrays.toString(byteArr)+" ");
+		String mask="eagleeyes";
+		byte []maskArr=mask.getBytes();
+		for(int i=0;i<byteArr.length;i++) {
+			byteArr[i]=(byte)(byteArr[i] ^ maskArr[i]);
+		}
+		System.out.println("The transaction id(masked) is: ");
+		System.out.println(Arrays.toString(byteArr)+" ");
+		try{
+			FileOutputStream fos = new FileOutputStream(outputFile);
+			fos.write(byteArr);
+			fos.close();
+		}
+			catch(IOException e){
+			System.out .println("Eroare: "+e.toString ());
+			}
+			System.out .println("Copiere terminata...");
+
+	}
+}

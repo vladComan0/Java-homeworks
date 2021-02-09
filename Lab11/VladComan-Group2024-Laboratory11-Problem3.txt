@@ -1,0 +1,53 @@
+/* Implement a TabbedView Java application that displays in each graphical
+ *  panel: - a drawing area
+- the necessary components for selecting a font type, size and color
+- the necessary components for choosing a geometrical shape (from a 
+predefined set) and a size for the side / radius (as the case)
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import javax.swing.*;
+public class TabbedView {
+public static void main(String args[]) {
+	JFrame frame=new JFrame("TabbedView");
+	frame.setLayout(new BorderLayout());
+	frame.setSize(800,800);
+	JTabbedPane tabbedPane=new JTabbedPane();
+	tabbedPane.setSize(500,500);
+	JPanel card1=new JPanel();
+	card1.setBackground(Color.white);
+    card1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+	card1.setSize(500,500);
+    tabbedPane.addTab("Drawing Area", card1);
+	JPanel card2=new JPanel();
+	card2.setSize(500,500);
+	String []font= {"Times New Roman","Arial","Arial Black","Verdana"};
+	String []size= {"8","10","12","14","16","18","20","24","30","36","48","72"};
+	String []color= {"Black","White","Blue","Red","Green","Brown","Gray"};
+	JComboBox f=new JComboBox(font);
+	JComboBox s=new JComboBox(size);
+	JComboBox c=new JComboBox(color);
+	card2.add(f);
+	card2.add(s);
+	card2.add(c);
+	tabbedPane.addTab("Font Area", card2);
+	JPanel card3=new JPanel();
+	card3.setSize(500,500);
+	String []shape= {"Square","Rectangle","Triangle","Circle", "Line"};
+	JComboBox sh=new JComboBox(shape);
+	card3.add(sh);
+	JLabel shape_size=new JLabel("Length/Radius: ");
+	JTextField shape_size1=new JTextField(6);
+	JButton button=new JButton("Enter");
+	card3.add(shape_size);
+	card3.add(shape_size1);
+	card3.add(button);
+	tabbedPane.addTab("Shape Area", card3);
+	frame.add(tabbedPane);
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame.pack();
+	frame.setVisible(true);
+}
+}

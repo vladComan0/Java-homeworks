@@ -1,0 +1,49 @@
+/*. Create an application which takes from two text fields your name 
+and the group you are part of and displays this info in a label colored 
+in RGB (122,123,129).
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+public class TabbedView {
+public static void main(String args[]) {
+	JFrame frame=new JFrame("TabbedView");
+	frame.setLayout(new FlowLayout());
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	JPanel panel=new JPanel();
+	JLabel name=new JLabel("Name: ");
+	JTextField tname=new JTextField(20);
+	tname.setEditable(true);
+	JLabel group=new JLabel("Group: ");
+	JTextField tgroup=new JTextField(5);
+	JButton button=new JButton("Enter");
+	panel.add(name);
+	panel.add(tname);
+	panel.add(group);
+	panel.add(tgroup);
+
+	JTextField displayer=new JTextField(25);
+	displayer.setEditable(false);
+	button.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent ae) {
+			String str=tname.getText();
+			String str2=tgroup.getText();
+			Font font=new Font("Times New Roman",10,20);
+			displayer.setBackground(new Color(122,123,129));
+			displayer.setFont(font);
+			displayer.setText(str+' '+str2);
+		}
+	});
+	panel.add(button);
+	panel.add(displayer);
+	frame.add(panel);
+	frame.pack();
+	frame.setSize(500,500);
+	frame.setVisible(true);
+}
+}

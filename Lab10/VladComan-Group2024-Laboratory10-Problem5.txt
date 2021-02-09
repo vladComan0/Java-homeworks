@@ -1,0 +1,78 @@
+/* 5. Write a Frame application that draws a circle colored in all the 
+possible colors. The starting color is red and the color transitions 
+must be made as smooth as possible.
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import java.awt.event.*;
+class MyFrame extends Frame {
+	private static final long serialVersionUID = 1L;
+	MyFrame(String title){
+	super(title);
+	MyCanvas canvas=new MyCanvas();
+	add(canvas);
+	setLayout(new FlowLayout());
+	this.addWindowListener(new ExitListener());
+	setSize(490, 530);
+	setVisible(true);
+	}
+	}
+class ExitListener extends WindowAdapter {//closing with adapter class
+	 @Override
+	 public void windowClosing(WindowEvent event) {
+	 System.exit(0);
+	}
+}
+class MyCanvas extends Canvas{
+	private static final long serialVersionUID = 1L;
+	public MyCanvas() {
+		this.setSize(new Dimension(490, 490));
+		this.setBackground(new Color(0, 0, 0));
+	}
+	public void paint(Graphics g) {
+		int red=255;
+		int green=0;
+		int blue=0;
+		for(int i=0;i<60;i++) {
+			g.setColor(new Color(red,green,blue));
+			g.fillArc(150, 150, 200, 200, i, 1);
+			green+=4;
+			}
+		for(int i=60;i<120;i++) {
+			g.setColor(new Color(red,green,blue));
+			g.fillArc(150, 150, 200, 200, i, 1);
+			red-=4;
+		}
+		for(int i=120;i<180;i++) {
+			g.setColor(new Color(red,green,blue));
+			g.fillArc(150, 150, 200, 200, i, 1);
+			green-=2;
+			blue+=4;
+		}
+		for(int i=180;i<240;i++) {
+			g.setColor(new Color(red,green,blue));
+			g.fillArc(150, 150, 200, 200, i, 1);
+			green-=2;
+		}
+		for(int i=240;i<300;i++) {
+			g.setColor(new Color(red,green,blue));
+			g.fillArc(150, 150, 200, 200, i, 1);
+			green+=2;
+			red+=2;
+		}
+		for(int i=300;i<360;i++) {
+			g.setColor(new Color(red,green,blue));
+			g.fillArc(150, 150, 200, 200, i, 1);
+			green-=2;
+			red+=2;
+			blue-=1;
+		}
+		}
+}
+public class Main{
+public static void main(String args[]) {
+	MyFrame frame = new MyFrame("Color Palette");
+}
+}

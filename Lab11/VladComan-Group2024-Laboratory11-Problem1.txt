@@ -1,0 +1,73 @@
+/*Implement a Java application that uses GridLayout for arranging the 
+components specific to a computing application. (TextField for I/O 
+operations, buttons for numbers, mathematical operations, screen 
+cleaning, etc.).
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import javax.swing.*;
+class MyFrame extends JFrame{
+	private static final long serialVersionUID = 1L;
+	MyFrame(){
+		super();
+		ButtonPanel b=new ButtonPanel("Operations");
+		TextField t=new TextField(30);
+		t.setEditable(false);
+		t.setText("I/O: ");
+		this.add(t);
+		this.add(b);
+		this.setSize(400,400);
+		this.setLayout(new FlowLayout());
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+	}
+}
+class ButtonPanel extends JPanel{
+	private static final long serialVersionUID = 1L;
+
+	public ButtonPanel(String title) {
+		super(new GridLayout(4,5));
+		setBackground(Color.cyan);
+		setBorder(BorderFactory.createTitledBorder(title));
+		Button b1=new Button("7");
+		b1.setPreferredSize(new Dimension(50,50));
+		Button b2=new Button("8");
+		Button b3=new Button("9");
+		Button b4=new Button("/");
+		Button b5=new Button("4");
+		Button b6=new Button("5");
+		Button b7=new Button("6");
+		Button b8=new Button("*");
+		Button b9=new Button("1");
+		Button b10=new Button("2");
+		Button b11=new Button("3");
+		Button b12=new Button("-");
+		Button b13=new Button("0");
+		Button b14=new Button("Clear");
+		Button b15=new Button("+");
+		Button b16=new Button("=");
+		add(b1);
+		add(b2);
+		add(b3);
+		add(b4);
+		add(b5);
+		add(b6);
+		add(b7);
+		add(b8);
+		add(b9);
+		add(b10);
+		add(b11);
+		add(b12);
+		add(b13);
+		add(b14);
+		add(b15);
+		add(b16);
+	}
+}
+public class Main{
+public static void main(String args[]) {
+	new MyFrame();
+}
+}

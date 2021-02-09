@@ -1,0 +1,453 @@
+/*Write a Frame application that will display in a panel your name 
+and group. The text will be blue and centered both on the horizontal 
+and vertical, given the dimension of the panel. 
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.event.*;
+import java.awt.Dimension;
+class MyFrame extends Frame {
+	private static final long serialVersionUID = 1L;
+	MyFrame(String title){
+	super(title);
+	setLayout(new FlowLayout());
+	Panel panel = new Panel();
+	Label label = new Label("Coman Vladut");
+	label.setFont(new Font("Times New Roman", 1, 20));
+	panel.add(label);
+	this.add(panel);
+	this.setLocationRelativeTo(null);
+	this.addWindowListener(new ExitListener());
+	setSize(300, 300);
+	setVisible(true);
+	}
+	}
+class ExitListener extends WindowAdapter {//closing with adapter class
+	 @Override
+	 public void windowClosing(WindowEvent event) {
+	 System.exit(0);
+	}
+}
+public class Main{
+public static void main(String args[ ]) {
+	MyFrame frame = new MyFrame("Name App");
+}
+}
+
+/*Write a Frame application that will draw, inside a Canvas component, 
+a circle tangent to smaller side of the canvas
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import java.awt.event.*;
+class MyFrame extends Frame {
+	private static final long serialVersionUID = 1L;
+	MyFrame(String title){
+	super(title);
+	MyCanvas canvas=new MyCanvas(200,100);
+	add(canvas);
+	setLayout(new FlowLayout());
+	this.addWindowListener(new ExitListener());
+	setSize(300, 300);
+	setVisible(true);
+	}
+	}
+class ExitListener extends WindowAdapter {//closing with adapter class
+	 @Override
+	 public void windowClosing(WindowEvent event) {
+	 System.exit(0);
+	}
+}
+class MyCanvas extends Canvas{
+	private static final long serialVersionUID = 1L;
+	Graphics g;
+	int x, y;
+	MyCanvas(int x, int y){
+		this.x=x;
+		this.y=y;
+		this.setSize(new Dimension(x, y));
+		this.setBackground(Color.blue);
+	}
+	@Override
+	public void paint(Graphics g) {
+		g.setColor(Color.white);
+		if(x>y) {
+		g.fillOval(0, 10, 50, 50);
+		}
+		else{
+			g.fillOval(10, 0, 50, 50);
+		}
+	}
+}
+public class Main{
+public static void main(String args[ ]) {
+	MyFrame frame = new MyFrame("Circle Application");
+}
+}
+
+/*Write a Frame application that displays an image stored in a local file.
+Below the image display the filename with a predefined Font. The text is 
+drawn using a color composed of 3 predefined components (red, green, blue)
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import java.awt.event.*;
+class MyFrame extends Frame {
+	private static final long serialVersionUID = 1L;
+	MyFrame(String title){
+	super(title);
+	MyCanvas canvas=new MyCanvas();
+	add(canvas);
+	setLayout(new FlowLayout());
+	this.addWindowListener(new ExitListener());
+	setSize(500, 500);
+	setVisible(true);
+	}
+	}
+class ExitListener extends WindowAdapter {//closing with adapter class
+	 @Override
+	 public void windowClosing(WindowEvent event) {
+	 System.exit(0);
+	}
+}
+class MyCanvas extends Canvas{
+	private static final long serialVersionUID = 1L;
+	public MyCanvas() {
+		this.setSize(new Dimension(200, 250));
+		this.setBackground(new Color(255, 125, 0));
+	}
+	public void paint(Graphics g) {
+		int r=150;
+		int gr=200;
+		int b=255;
+		Toolkit t=Toolkit.getDefaultToolkit();
+		Image i=t.getImage("wolf.jpg");
+		g.drawImage(i,0,0,this); 
+		g.setColor(new Color(r,gr,b));
+		Font font=new Font("Times New Roman",10,20);
+		g.setFont(font);
+		g.drawString("wolf.jpg", 80, 240);
+		}
+}
+public class Main{
+public static void main(String args[]) {
+	MyFrame frame = new MyFrame("Circle Application");
+}
+}
+
+/* Write a Frame application that displays a TV test card. The card will 
+contain at least 10 levels of grey and the basic colors red, green, blue,
+yellow, cyan and magenta. The card will cover the entire surface of the 
+component that displays it (Canvas, etc.).
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import java.awt.event.*;
+class MyFrame extends Frame {
+	private static final long serialVersionUID = 1L;
+	MyFrame(String title){
+	super(title);
+	MyCanvas canvas=new MyCanvas();
+	add(canvas);
+	setLayout(new FlowLayout());
+	this.addWindowListener(new ExitListener());
+	setSize(490, 530);
+	setVisible(true);
+	}
+	}
+class ExitListener extends WindowAdapter {//closing with adapter class
+	 @Override
+	 public void windowClosing(WindowEvent event) {
+	 System.exit(0);
+	}
+}
+class MyCanvas extends Canvas{
+	private static final long serialVersionUID = 1L;
+	public MyCanvas() {
+		this.setSize(new Dimension(490, 490));
+		this.setBackground(new Color(0, 0, 0));
+	}
+	public void paint(Graphics g) {
+		g.setColor(Color.white);
+		g.fillRect(0, 0, 70, 420);
+		g.setColor(Color.yellow);
+		g.fillRect(70, 0, 70, 420);
+		g.setColor(Color.cyan);
+		g.fillRect(140, 0, 70, 420);
+		g.setColor(Color.green);
+		g.fillRect(210, 0, 70, 420);
+		g.setColor(new Color(255,102,178));
+		g.fillRect(280, 0, 70, 420);
+		g.setColor(Color.red);
+		g.fillRect(350, 0, 70, 420);
+		g.setColor(Color.blue);
+		g.fillRect(420, 0, 70, 420);
+		g.setColor(Color.blue);
+		g.fillRect(0, 420, 70, 17);
+		g.setColor(new Color(0,0,51));
+		g.fillRect(0, 437, 70, 17);
+		g.setColor(Color.black);
+		g.fillRect(70, 420, 70, 17);
+		g.setColor(new Color(0,0,0));
+		g.fillRect(70, 437, 70, 17);
+		g.setColor(new Color(255,102,178));
+		g.fillRect(140, 420, 70, 17);
+		g.setColor(new Color(204,0,102));
+		g.fillRect(140, 437, 70, 17);
+		g.setColor(Color.black);
+		g.fillRect(210, 420, 70, 17);
+		g.setColor(new Color(0,0,0));
+		g.fillRect(210, 437, 70, 17);
+		g.setColor(Color.cyan);
+		g.fillRect(280, 420, 70, 17);
+		g.setColor(new Color(0,102,102));
+		g.fillRect(280, 437, 70, 17);
+		g.setColor(Color.black);
+		g.fillRect(350, 420, 70, 17);
+		g.setColor(new Color(0,0,0));
+		g.fillRect(350, 437, 70, 17);
+		g.setColor(Color.white);
+		g.fillRect(420, 420, 70, 17);
+		g.setColor(Color.gray);
+		g.fillRect(420, 437, 70, 17);
+		g.setColor(Color.white);
+		g.fillRect(0, 454, 70, 34);
+		g.setColor(new Color(192,192,192));
+		g.fillRect(70, 454, 70, 34);
+		g.setColor(new Color(160,160,160));
+		g.fillRect(140, 454, 70, 34);
+		g.setColor(new Color(96,96,96));
+		g.fillRect(210, 454, 70, 34);
+		g.setColor(new Color(64,64,64));
+		g.fillRect(280, 454, 70, 34);
+		g.setColor(new Color(56,56,56));
+		g.fillRect(350, 454, 10, 34);
+		g.setColor(new Color(48,48,48));
+		g.fillRect(360, 454, 10, 34);
+		g.setColor(new Color(40,40,40));
+		g.fillRect(370, 454, 10, 34);
+		g.setColor(new Color(32,32,32));
+		g.fillRect(380, 454, 10, 34);
+		g.setColor(new Color(24,24,24));
+		g.fillRect(390, 454, 10, 34);
+		g.setColor(new Color(16,16,16));
+		g.fillRect(400, 454, 10, 34);
+		g.setColor(new Color(8,8,8));
+		g.fillRect(410, 454, 10, 34);
+		g.setColor(new Color(0,0,0));
+		g.fillRect(420, 454, 70, 34);
+		}
+}
+public class Main{
+public static void main(String args[]) {
+	MyFrame frame = new MyFrame("TV Test Card");
+}
+}
+
+/* 5. Write a Frame application that draws a circle colored in all the 
+possible colors. The starting color is red and the color transitions 
+must be made as smooth as possible.
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import java.awt.event.*;
+class MyFrame extends Frame {
+	private static final long serialVersionUID = 1L;
+	MyFrame(String title){
+	super(title);
+	MyCanvas canvas=new MyCanvas();
+	add(canvas);
+	setLayout(new FlowLayout());
+	this.addWindowListener(new ExitListener());
+	setSize(490, 530);
+	setVisible(true);
+	}
+	}
+class ExitListener extends WindowAdapter {//closing with adapter class
+	 @Override
+	 public void windowClosing(WindowEvent event) {
+	 System.exit(0);
+	}
+}
+class MyCanvas extends Canvas{
+	private static final long serialVersionUID = 1L;
+	public MyCanvas() {
+		this.setSize(new Dimension(490, 490));
+		this.setBackground(new Color(0, 0, 0));
+	}
+	public void paint(Graphics g) {
+		int red=255;
+		int green=0;
+		int blue=0;
+		for(int i=0;i<60;i++) {
+			g.setColor(new Color(red,green,blue));
+			g.fillArc(150, 150, 200, 200, i, 1);
+			green+=4;
+			}
+		for(int i=60;i<120;i++) {
+			g.setColor(new Color(red,green,blue));
+			g.fillArc(150, 150, 200, 200, i, 1);
+			red-=4;
+		}
+		for(int i=120;i<180;i++) {
+			g.setColor(new Color(red,green,blue));
+			g.fillArc(150, 150, 200, 200, i, 1);
+			green-=2;
+			blue+=4;
+		}
+		for(int i=180;i<240;i++) {
+			g.setColor(new Color(red,green,blue));
+			g.fillArc(150, 150, 200, 200, i, 1);
+			green-=2;
+		}
+		for(int i=240;i<300;i++) {
+			g.setColor(new Color(red,green,blue));
+			g.fillArc(150, 150, 200, 200, i, 1);
+			green+=2;
+			red+=2;
+		}
+		for(int i=300;i<360;i++) {
+			g.setColor(new Color(red,green,blue));
+			g.fillArc(150, 150, 200, 200, i, 1);
+			green-=2;
+			red+=2;
+			blue-=1;
+		}
+		}
+}
+public class Main{
+public static void main(String args[]) {
+	MyFrame frame = new MyFrame("Color Palette");
+}
+}
+
+/*. Write a Frame application that draws a schematic car. 
+Use different colors for different car parts (doors, wheels, etc.)
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import java.awt.event.*;
+class MyFrame extends Frame {
+	private static final long serialVersionUID = 1L;
+	MyFrame(String title){
+	super(title);
+	MyCanvas canvas=new MyCanvas();
+	add(canvas);
+	setLayout(new FlowLayout());
+	this.addWindowListener(new ExitListener());
+	setSize(600, 530);
+	setVisible(true);
+	}
+	}
+class ExitListener extends WindowAdapter {//closing with adapter class
+	 @Override
+	 public void windowClosing(WindowEvent event) {
+	 System.exit(0);
+	}
+}
+class MyCanvas extends Canvas{
+	private static final long serialVersionUID = 1L;
+	public MyCanvas() {
+		this.setSize(new Dimension(600, 490));
+		this.setBackground(new Color(0, 0, 0));
+	}
+	public void paint(Graphics g) {
+		Font font=new Font("Verdana", 10, 20);
+		g.setColor(Color.blue);
+		g.fillRoundRect(30, 150, 500, 150, 50, 50);
+		g.setColor(Color.magenta);
+		g.fillRect(140, 50, 300, 100);
+		g.setColor(Color.gray);
+		g.fillOval(90, 300, 100, 100);
+		g.fillOval(380, 300, 100, 100);
+		g.setColor(Color.cyan);
+		g.fillRoundRect(200, 60, 200, 80, 50, 50);
+		g.setFont(font);
+		g.setColor(Color.darkGray);
+		g.drawString("FORD", 65, 200);
+		g.setColor(Color.red);
+		g.fillRect(300, 160, 80, 120);
+		g.setColor(Color.yellow);
+		g.fillOval(320, 200, 20, 20);
+		}
+}
+public class Main{
+public static void main(String args[]) {
+	MyFrame frame = new MyFrame("Color Palette");
+}
+}
+
+/*Implement a Frame application that fills a visual container with 
+circles having randomly generated radii. The circles are tangent and 
+have random colors.
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Random;
+class MyFrame extends Frame {
+	private static final long serialVersionUID = 1L;
+	MyFrame(String title){
+	super(title);
+	MyCanvas canvas=new MyCanvas();
+	add(canvas);
+	setLayout(new FlowLayout());
+	this.addWindowListener(new ExitListener());
+	setSize(600, 530);
+	setVisible(true);
+	}
+	}
+class ExitListener extends WindowAdapter {//closing with adapter class
+	 @Override
+	 public void windowClosing(WindowEvent event) {
+	 System.exit(0);
+	}
+}
+class MyCanvas extends Canvas{
+	int x, y;
+	private static final long serialVersionUID = 1L;
+	public MyCanvas() {
+		this.setSize(new Dimension(400,400));
+		this.setBackground(new Color(200,200,200));
+	}
+	public void paint(Graphics g) {
+		Random rand=new Random();
+		int radius=rand.nextInt(400);
+		int red, green, blue;
+		for(int i=0;i<400;i+=radius)
+			for(int j=0;j<400;j+=radius) {
+			red=rand.nextInt(255);
+			green=rand.nextInt(255);
+			blue=rand.nextInt(255);
+			g.setColor(new Color(red,green,blue));
+			g.fillOval(i, j, radius, radius);
+			}
+		}
+}
+public class Main{
+public static void main(String args[]) {
+	MyFrame frame = new MyFrame("Color Palette");
+}
+}

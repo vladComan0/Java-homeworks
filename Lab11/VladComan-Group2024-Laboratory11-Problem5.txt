@@ -1,0 +1,63 @@
+/*. Implement a graphical application that displays 3 TextField components
+for setting the amounts of R, G and B from a color. After pressing a button,
+a Label component will display a text representing the specified quantities,
+with the resulting color, if the values are correct (numerical, between 
+0-255). Oherwise, an error message will be displayed with red. 
+Try to use exceptions for validating the input
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+public class TabbedView {
+public static void main(String args[]) {
+	JFrame frame=new JFrame("TabbedView");
+	//frame.setLayout(new FlowLayout());
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	JPanel panel = new JPanel();
+	JLabel lred = new JLabel("Red (0-255): ");
+	JTextField red = new JTextField(3);
+	JLabel lgreen = new JLabel("Green (0-255): ");
+	JTextField green = new JTextField(3);
+	JLabel lblue = new JLabel("Blue (0-255): ");
+	JTextField blue = new JTextField(3);
+	JButton button = new JButton("Enter");
+	Dimension dim = new Dimension(100,50);
+	button.setPreferredSize(dim);
+	JLabel result = new JLabel();
+	button.addActionListener(new ActionListener(){
+		   public void actionPerformed(ActionEvent ae){
+			  int r, g, b;
+		      String str1 = red.getText();
+		      String str2 = green.getText();
+		      String str3 = blue.getText();
+		      r=Integer.parseInt(str1);
+		      g=Integer.parseInt(str2);
+		      b=Integer.parseInt(str3);
+		      if(r>255 || r<0 || g>255 || g<0 || b>255 || b<0) {
+		    	  result.setForeground(Color.red);
+		    	  result.setText("ERROR! The numbers introduced are beyond limits!");
+		      }
+		      else {
+		    	  result.setForeground(new Color(r,g,b));
+		    	  result.setText(str1+' '+str2+' '+str3);
+		      }
+		   }
+		});
+	panel.add(lred);
+	panel.add(red);
+	panel.add(lgreen);
+	panel.add(green);
+	panel.add(lblue);
+	panel.add(blue);
+	panel.add(button);
+	panel.add(result);
+	frame.add(panel);
+	frame.pack();
+	frame.setSize(500,500);
+	frame.setVisible(true);
+}
+}

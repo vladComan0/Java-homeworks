@@ -1,0 +1,51 @@
+/*Write a Frame application that displays an image stored in a local file.
+Below the image display the filename with a predefined Font. The text is 
+drawn using a color composed of 3 predefined components (red, green, blue)
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import java.awt.event.*;
+class MyFrame extends Frame {
+	private static final long serialVersionUID = 1L;
+	MyFrame(String title){
+	super(title);
+	MyCanvas canvas=new MyCanvas();
+	add(canvas);
+	setLayout(new FlowLayout());
+	this.addWindowListener(new ExitListener());
+	setSize(500, 500);
+	setVisible(true);
+	}
+	}
+class ExitListener extends WindowAdapter {//closing with adapter class
+	 @Override
+	 public void windowClosing(WindowEvent event) {
+	 System.exit(0);
+	}
+}
+class MyCanvas extends Canvas{
+	private static final long serialVersionUID = 1L;
+	public MyCanvas() {
+		this.setSize(new Dimension(200, 250));
+		this.setBackground(new Color(255, 125, 0));
+	}
+	public void paint(Graphics g) {
+		int r=150;
+		int gr=200;
+		int b=255;
+		Toolkit t=Toolkit.getDefaultToolkit();
+		Image i=t.getImage("wolf.jpg");
+		g.drawImage(i,0,0,this); 
+		g.setColor(new Color(r,gr,b));
+		Font font=new Font("Times New Roman",10,20);
+		g.setFont(font);
+		g.drawString("wolf.jpg", 80, 240);
+		}
+}
+public class Main{
+public static void main(String args[]) {
+	MyFrame frame = new MyFrame("Circle Application");
+}
+}

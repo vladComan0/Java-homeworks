@@ -1,0 +1,121 @@
+/*Implement a Java application that uses GridBagLayout for arranging the 
+components specific to a computing application. (TextField for I/O 
+operations, buttons for numbers, mathematical operations, screen 
+cleaning, etc.).
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import javax.swing.*;
+class MyFrame extends JFrame{
+	private static final long serialVersionUID = 1L;
+	MyFrame(){
+		super();
+		ButtonPanel b=new ButtonPanel("Operations");
+		TextField t=new TextField(30);
+		t.setEditable(false);
+		t.setText("I/O: ");
+		this.add(t);
+		this.add(b);
+		this.setSize(400,400);
+		this.setLayout(new FlowLayout());
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+	}
+}
+class ButtonPanel extends JPanel{
+	private static final long serialVersionUID = 1L;
+
+	public ButtonPanel(String title) {
+		super(new GridBagLayout());
+		GridBagConstraints pos=new GridBagConstraints();
+		setBackground(Color.cyan);
+		setBorder(BorderFactory.createTitledBorder(title));
+		JButton b1=new JButton("1");
+		b1.setPreferredSize(new Dimension(50,50));
+		pos.gridx=0;
+		pos.gridy=0;
+		this.add(b1,pos);
+		JButton b2=new JButton("2");
+		b2.setPreferredSize(new Dimension(50,50));
+		pos.gridx=1;
+		pos.gridy=0;
+		this.add(b2,pos);
+		JButton b3=new JButton("3");
+		b3.setPreferredSize(new Dimension(50,50));
+		pos.gridx=2;
+		pos.gridy=0;
+		this.add(b3,pos);
+		JButton b4=new JButton("4");
+		b4.setPreferredSize(new Dimension(50,50));
+		pos.gridx=3;
+		pos.gridy=0;
+		this.add(b4,pos);
+		JButton b5=new JButton("5");
+		b5.setPreferredSize(new Dimension(50,50));
+		pos.gridx=0;
+		pos.gridy=1;
+		this.add(b5,pos);
+		JButton b6=new JButton("6");
+		b6.setPreferredSize(new Dimension(50,50));
+		pos.gridx=1;
+		pos.gridy=1;
+		this.add(b6,pos);
+		JButton b7=new JButton("7");
+		b7.setPreferredSize(new Dimension(50,50));
+		pos.gridx=2;
+		pos.gridy=1;
+		this.add(b7,pos);
+		JButton b8=new JButton("8");
+		b8.setPreferredSize(new Dimension(50,50));
+		pos.gridx=3;
+		pos.gridy=1;
+		this.add(b8,pos);
+		JButton b9=new JButton("9");
+		b9.setPreferredSize(new Dimension(50,50));
+		pos.gridx=0;
+		pos.gridy=2;
+		this.add(b9,pos);
+		JButton b10=new JButton("0");
+		b10.setPreferredSize(new Dimension(50,50));
+		pos.gridx=1;
+		pos.gridy=2;
+		this.add(b10,pos);
+		JButton b11=new JButton("+");
+		b11.setPreferredSize(new Dimension(50,50));
+		pos.gridx=2;
+		pos.gridy=2;
+		this.add(b11,pos);;
+		JButton b12=new JButton("-");
+		b12.setPreferredSize(new Dimension(50,50));
+		pos.gridx=3;
+		pos.gridy=2;
+		this.add(b12,pos);
+		JButton b13=new JButton("*");
+		b13.setPreferredSize(new Dimension(50,50));
+		pos.gridx=0;
+		pos.gridy=3;
+		this.add(b13,pos);
+		JButton b14=new JButton("/");
+		b14.setPreferredSize(new Dimension(50,50));
+		pos.gridx=1;
+		pos.gridy=3;
+		this.add(b14,pos);
+		JButton b15=new JButton("=");
+		b15.setPreferredSize(new Dimension(50,50));
+		pos.gridx=2;
+		pos.gridy=3;
+		this.add(b15,pos);
+		JButton b16=new JButton("Clear");
+		b16.setPreferredSize(new Dimension(50,50));
+		pos.gridx=3;
+		pos.gridy=3;
+		this.add(b16,pos);
+	}
+}
+public class Main{
+public static void main(String args[]) {
+	new MyFrame();
+}
+}

@@ -1,0 +1,125 @@
+/*Write a Java application which includes 3 sliders which enables the user to set the color of a 100x100 square. The
+square will be drawn using a specific component (Canvas, etc.).
+Vlad Coman, Group 2024
+31.05.2020
+*/
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+class Drawer extends JFrame {
+	Drawer(){
+	super();
+	MyPanel panel=new MyPanel();
+	this.add(panel.getCanvas());
+	this.add(panel);
+	this.setSize(400,400);
+	this.setLayout(new FlowLayout());
+	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	this.setVisible(true);
+}
+}
+class MyCanvas extends Canvas{
+int red,green,blue;
+private static final long serialVersionUID = 1L;
+public MyCanvas() {
+	this.setSize(new Dimension(400, 250));
+	this.setBackground(new Color(255, 255, 255));
+}
+public void paint(Graphics g) {
+	g.setColor(new Color(red, green, blue));
+	g.fillRect(100, 25, 200, 200);
+}
+
+public int getRed() {
+	return red;
+}
+public void setRed(int red) {
+	this.red = red;
+}
+public int getGreen() {
+	return green;
+}
+public void setGreen(int green) {
+	this.green = green;
+}
+public int getBlue() {
+	return blue;
+}
+public void setBlue(int blue) {
+	this.blue = blue;
+}
+}
+class MyPanel extends JPanel{
+MyCanvas canvas;
+MyPanel(){
+	super();
+	setLayout(new GridBagLayout());
+	GridBagConstraints pos=new GridBagConstraints();
+	canvas=new MyCanvas();
+	pos.gridx=0;
+	pos.gridy=0;
+	JLabel rl=new JLabel("Red");
+	add(rl,pos);
+	pos.gridx=1;
+	pos.gridy=0;
+	JSlider r=new JSlider(0,255);
+	add(r,pos);
+	pos.gridx=0;
+	pos.gridy=1;
+	JLabel gl=new JLabel("Green");
+	add(gl,pos);
+	pos.gridx=1;
+	pos.gridy=1;
+	JSlider g=new JSlider(0,255);
+	add(g,pos);
+	pos.gridx=0;
+	pos.gridy=2;
+	JLabel bl=new JLabel("Blue");
+	add(bl,pos);
+	pos.gridx=1;
+	pos.gridy=2;
+	JSlider b=new JSlider(0,255);
+	add(b,pos);
+	r.addChangeListener((ChangeListener) new ChangeListener() {
+        public void stateChanged(ChangeEvent e) {
+           canvas.setRed((int)((JSlider)e.getSource()).getValue());
+           canvas.repaint();
+        }
+     });
+	g.addChangeListener((ChangeListener) new ChangeListener() {
+        public void stateChanged(ChangeEvent e) {
+           canvas.setGreen((int)((JSlider)e.getSource()).getValue());
+           canvas.repaint();
+        }
+     });
+	b.addChangeListener((ChangeListener) new ChangeListener() {
+        public void stateChanged(ChangeEvent e) {
+           canvas.setBlue((int)((JSlider)e.getSource()).getValue());
+           canvas.repaint();
+        }
+     });
+}
+public MyCanvas getCanvas() {
+	return canvas;
+}
+public void setCanvas(MyCanvas canvas) {
+	this.canvas = canvas;
+}
+}
+public class Slider{
+public static void main(String args[]) {
+	new Drawer();
+}
+}

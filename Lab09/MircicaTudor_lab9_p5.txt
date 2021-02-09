@@ -1,0 +1,77 @@
+/*Mircica Tudor 
+ETTI anul II, sectia Engleza, grupa 4 
+tudor2mircica@gmail.com
+Lab 9(10.05.2020) 
+5. Write a Java app which computes the greatest common divisor for large numbers (>100.000). The app will continuosly read from the keyboard pairs of numbers and launch threads for each of the pairs.
+The results will be displayed in the console as soon as they are available.*/
+import java.util.*;
+import java.io.*;
+
+class Div {
+	int x;
+	int y;
+
+	Div() {
+		x = y = 0;
+	}
+
+	Div(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	int divid() {
+		int d = 1;
+		if (x >= y)
+			for (int i = 2; i <= y; i++)
+				if (x % i == 0 && y % i == 0)
+					d = i;
+		if (x < y)
+			for (int i = 2; i <= x; i++)
+				if (x % i == 0 && y % i == 0)
+					d = i;
+		return d;
+	}
+
+	synchronized void afis(int x) {
+		System.out.println("GCD os is " + x);
+	}
+}
+
+class MyThread implements Runnable {
+	Div ob;
+	int a;
+	int b;
+	Thread t;
+
+	MyThread(int x, int y) {
+		ob = new Div(x, y);
+		t = new Thread(this);
+		t.start();
+	}
+
+	@Override
+	public void run() {
+		ob.afis(ob.divid());
+	}
+}
+
+public class Project {
+	public static void main(String args[]) throws InterruptedException {
+		Scanner dis = new Scanner(System.in);
+		int x, y;
+		String s = "Start";
+		while (s.compareTo("N") != 0) {
+			System.out.println("Read two large numbers (>100000):");
+			System.out.println("x = ");
+			x = dis.nextInt();
+			System.out.println("y = ");
+			y = dis.nextInt();
+			assert (x > 100000 && y > 100000) : "You were told to introduce a larger value!";
+			MyThread testare = new MyThread(x, y);
+			testare.t.join();
+			System.out.print("Do you want to read a pair? (press N to stop) ");
+			s = dis.next();
+		}
+	}
+}

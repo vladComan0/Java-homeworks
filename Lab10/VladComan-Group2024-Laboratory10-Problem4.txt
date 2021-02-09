@@ -1,0 +1,110 @@
+/* Write a Frame application that displays a TV test card. The card will 
+contain at least 10 levels of grey and the basic colors red, green, blue,
+yellow, cyan and magenta. The card will cover the entire surface of the 
+component that displays it (Canvas, etc.).
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import java.awt.event.*;
+class MyFrame extends Frame {
+	private static final long serialVersionUID = 1L;
+	MyFrame(String title){
+	super(title);
+	MyCanvas canvas=new MyCanvas();
+	add(canvas);
+	setLayout(new FlowLayout());
+	this.addWindowListener(new ExitListener());
+	setSize(490, 530);
+	setVisible(true);
+	}
+	}
+class ExitListener extends WindowAdapter {//closing with adapter class
+	 @Override
+	 public void windowClosing(WindowEvent event) {
+	 System.exit(0);
+	}
+}
+class MyCanvas extends Canvas{
+	private static final long serialVersionUID = 1L;
+	public MyCanvas() {
+		this.setSize(new Dimension(490, 490));
+		this.setBackground(new Color(0, 0, 0));
+	}
+	public void paint(Graphics g) {
+		g.setColor(Color.white);
+		g.fillRect(0, 0, 70, 420);
+		g.setColor(Color.yellow);
+		g.fillRect(70, 0, 70, 420);
+		g.setColor(Color.cyan);
+		g.fillRect(140, 0, 70, 420);
+		g.setColor(Color.green);
+		g.fillRect(210, 0, 70, 420);
+		g.setColor(new Color(255,102,178));
+		g.fillRect(280, 0, 70, 420);
+		g.setColor(Color.red);
+		g.fillRect(350, 0, 70, 420);
+		g.setColor(Color.blue);
+		g.fillRect(420, 0, 70, 420);
+		g.setColor(Color.blue);
+		g.fillRect(0, 420, 70, 17);
+		g.setColor(new Color(0,0,51));
+		g.fillRect(0, 437, 70, 17);
+		g.setColor(Color.black);
+		g.fillRect(70, 420, 70, 17);
+		g.setColor(new Color(0,0,0));
+		g.fillRect(70, 437, 70, 17);
+		g.setColor(new Color(255,102,178));
+		g.fillRect(140, 420, 70, 17);
+		g.setColor(new Color(204,0,102));
+		g.fillRect(140, 437, 70, 17);
+		g.setColor(Color.black);
+		g.fillRect(210, 420, 70, 17);
+		g.setColor(new Color(0,0,0));
+		g.fillRect(210, 437, 70, 17);
+		g.setColor(Color.cyan);
+		g.fillRect(280, 420, 70, 17);
+		g.setColor(new Color(0,102,102));
+		g.fillRect(280, 437, 70, 17);
+		g.setColor(Color.black);
+		g.fillRect(350, 420, 70, 17);
+		g.setColor(new Color(0,0,0));
+		g.fillRect(350, 437, 70, 17);
+		g.setColor(Color.white);
+		g.fillRect(420, 420, 70, 17);
+		g.setColor(Color.gray);
+		g.fillRect(420, 437, 70, 17);
+		g.setColor(Color.white);
+		g.fillRect(0, 454, 70, 34);
+		g.setColor(new Color(192,192,192));
+		g.fillRect(70, 454, 70, 34);
+		g.setColor(new Color(160,160,160));
+		g.fillRect(140, 454, 70, 34);
+		g.setColor(new Color(96,96,96));
+		g.fillRect(210, 454, 70, 34);
+		g.setColor(new Color(64,64,64));
+		g.fillRect(280, 454, 70, 34);
+		g.setColor(new Color(56,56,56));
+		g.fillRect(350, 454, 10, 34);
+		g.setColor(new Color(48,48,48));
+		g.fillRect(360, 454, 10, 34);
+		g.setColor(new Color(40,40,40));
+		g.fillRect(370, 454, 10, 34);
+		g.setColor(new Color(32,32,32));
+		g.fillRect(380, 454, 10, 34);
+		g.setColor(new Color(24,24,24));
+		g.fillRect(390, 454, 10, 34);
+		g.setColor(new Color(16,16,16));
+		g.fillRect(400, 454, 10, 34);
+		g.setColor(new Color(8,8,8));
+		g.fillRect(410, 454, 10, 34);
+		g.setColor(new Color(0,0,0));
+		g.fillRect(420, 454, 70, 34);
+		}
+}
+public class Main{
+public static void main(String args[]) {
+	MyFrame frame = new MyFrame("TV Test Card");
+}
+}

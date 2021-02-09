@@ -1,0 +1,480 @@
+/*Implement a Java application that uses GridLayout for arranging the 
+components specific to a computing application. (TextField for I/O 
+operations, buttons for numbers, mathematical operations, screen 
+cleaning, etc.).
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import javax.swing.*;
+class MyFrame extends JFrame{
+	private static final long serialVersionUID = 1L;
+	MyFrame(){
+		super();
+		ButtonPanel b=new ButtonPanel("Operations");
+		TextField t=new TextField(30);
+		t.setEditable(false);
+		t.setText("I/O: ");
+		this.add(t);
+		this.add(b);
+		this.setSize(400,400);
+		this.setLayout(new FlowLayout());
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+	}
+}
+class ButtonPanel extends JPanel{
+	private static final long serialVersionUID = 1L;
+
+	public ButtonPanel(String title) {
+		super(new GridLayout(4,5));
+		setBackground(Color.cyan);
+		setBorder(BorderFactory.createTitledBorder(title));
+		Button b1=new Button("7");
+		b1.setPreferredSize(new Dimension(50,50));
+		Button b2=new Button("8");
+		Button b3=new Button("9");
+		Button b4=new Button("/");
+		Button b5=new Button("4");
+		Button b6=new Button("5");
+		Button b7=new Button("6");
+		Button b8=new Button("*");
+		Button b9=new Button("1");
+		Button b10=new Button("2");
+		Button b11=new Button("3");
+		Button b12=new Button("-");
+		Button b13=new Button("0");
+		Button b14=new Button("Clear");
+		Button b15=new Button("+");
+		Button b16=new Button("=");
+		add(b1);
+		add(b2);
+		add(b3);
+		add(b4);
+		add(b5);
+		add(b6);
+		add(b7);
+		add(b8);
+		add(b9);
+		add(b10);
+		add(b11);
+		add(b12);
+		add(b13);
+		add(b14);
+		add(b15);
+		add(b16);
+	}
+}
+public class Main{
+public static void main(String args[]) {
+	new MyFrame();
+}
+}
+
+
+/*Implement a Java application that uses GridBagLayout for arranging the 
+components specific to a computing application. (TextField for I/O 
+operations, buttons for numbers, mathematical operations, screen 
+cleaning, etc.).
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import javax.swing.*;
+class MyFrame extends JFrame{
+	private static final long serialVersionUID = 1L;
+	MyFrame(){
+		super();
+		ButtonPanel b=new ButtonPanel("Operations");
+		TextField t=new TextField(30);
+		t.setEditable(false);
+		t.setText("I/O: ");
+		this.add(t);
+		this.add(b);
+		this.setSize(400,400);
+		this.setLayout(new FlowLayout());
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+	}
+}
+class ButtonPanel extends JPanel{
+	private static final long serialVersionUID = 1L;
+
+	public ButtonPanel(String title) {
+		super(new GridBagLayout());
+		GridBagConstraints pos=new GridBagConstraints();
+		setBackground(Color.cyan);
+		setBorder(BorderFactory.createTitledBorder(title));
+		JButton b1=new JButton("1");
+		b1.setPreferredSize(new Dimension(50,50));
+		pos.gridx=0;
+		pos.gridy=0;
+		this.add(b1,pos);
+		JButton b2=new JButton("2");
+		b2.setPreferredSize(new Dimension(50,50));
+		pos.gridx=1;
+		pos.gridy=0;
+		this.add(b2,pos);
+		JButton b3=new JButton("3");
+		b3.setPreferredSize(new Dimension(50,50));
+		pos.gridx=2;
+		pos.gridy=0;
+		this.add(b3,pos);
+		JButton b4=new JButton("4");
+		b4.setPreferredSize(new Dimension(50,50));
+		pos.gridx=3;
+		pos.gridy=0;
+		this.add(b4,pos);
+		JButton b5=new JButton("5");
+		b5.setPreferredSize(new Dimension(50,50));
+		pos.gridx=0;
+		pos.gridy=1;
+		this.add(b5,pos);
+		JButton b6=new JButton("6");
+		b6.setPreferredSize(new Dimension(50,50));
+		pos.gridx=1;
+		pos.gridy=1;
+		this.add(b6,pos);
+		JButton b7=new JButton("7");
+		b7.setPreferredSize(new Dimension(50,50));
+		pos.gridx=2;
+		pos.gridy=1;
+		this.add(b7,pos);
+		JButton b8=new JButton("8");
+		b8.setPreferredSize(new Dimension(50,50));
+		pos.gridx=3;
+		pos.gridy=1;
+		this.add(b8,pos);
+		JButton b9=new JButton("9");
+		b9.setPreferredSize(new Dimension(50,50));
+		pos.gridx=0;
+		pos.gridy=2;
+		this.add(b9,pos);
+		JButton b10=new JButton("0");
+		b10.setPreferredSize(new Dimension(50,50));
+		pos.gridx=1;
+		pos.gridy=2;
+		this.add(b10,pos);
+		JButton b11=new JButton("+");
+		b11.setPreferredSize(new Dimension(50,50));
+		pos.gridx=2;
+		pos.gridy=2;
+		this.add(b11,pos);;
+		JButton b12=new JButton("-");
+		b12.setPreferredSize(new Dimension(50,50));
+		pos.gridx=3;
+		pos.gridy=2;
+		this.add(b12,pos);
+		JButton b13=new JButton("*");
+		b13.setPreferredSize(new Dimension(50,50));
+		pos.gridx=0;
+		pos.gridy=3;
+		this.add(b13,pos);
+		JButton b14=new JButton("/");
+		b14.setPreferredSize(new Dimension(50,50));
+		pos.gridx=1;
+		pos.gridy=3;
+		this.add(b14,pos);
+		JButton b15=new JButton("=");
+		b15.setPreferredSize(new Dimension(50,50));
+		pos.gridx=2;
+		pos.gridy=3;
+		this.add(b15,pos);
+		JButton b16=new JButton("Clear");
+		b16.setPreferredSize(new Dimension(50,50));
+		pos.gridx=3;
+		pos.gridy=3;
+		this.add(b16,pos);
+	}
+}
+public class Main{
+public static void main(String args[]) {
+	new MyFrame();
+}
+}
+
+
+/* Implement a TabbedView Java application that displays in each graphical
+ *  panel: - a drawing area
+- the necessary components for selecting a font type, size and color
+- the necessary components for choosing a geometrical shape (from a 
+predefined set) and a size for the side / radius (as the case)
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import javax.swing.*;
+public class TabbedView {
+public static void main(String args[]) {
+	JFrame frame=new JFrame("TabbedView");
+	frame.setLayout(new BorderLayout());
+	frame.setSize(800,800);
+	JTabbedPane tabbedPane=new JTabbedPane();
+	tabbedPane.setSize(500,500);
+	JPanel card1=new JPanel();
+	card1.setBackground(Color.white);
+    card1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+	card1.setSize(500,500);
+    tabbedPane.addTab("Drawing Area", card1);
+	JPanel card2=new JPanel();
+	card2.setSize(500,500);
+	String []font= {"Times New Roman","Arial","Arial Black","Verdana"};
+	String []size= {"8","10","12","14","16","18","20","24","30","36","48","72"};
+	String []color= {"Black","White","Blue","Red","Green","Brown","Gray"};
+	JComboBox f=new JComboBox(font);
+	JComboBox s=new JComboBox(size);
+	JComboBox c=new JComboBox(color);
+	card2.add(f);
+	card2.add(s);
+	card2.add(c);
+	tabbedPane.addTab("Font Area", card2);
+	JPanel card3=new JPanel();
+	card3.setSize(500,500);
+	String []shape= {"Square","Rectangle","Triangle","Circle", "Line"};
+	JComboBox sh=new JComboBox(shape);
+	card3.add(sh);
+	JLabel shape_size=new JLabel("Length/Radius: ");
+	JTextField shape_size1=new JTextField(6);
+	JButton button=new JButton("Enter");
+	card3.add(shape_size);
+	card3.add(shape_size1);
+	card3.add(button);
+	tabbedPane.addTab("Shape Area", card3);
+	frame.add(tabbedPane);
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame.pack();
+	frame.setVisible(true);
+}
+}
+
+
+/*. Create an application which takes from two text fields your name 
+and the group you are part of and displays this info in a label colored 
+in RGB (122,123,129).
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+public class TabbedView {
+public static void main(String args[]) {
+	JFrame frame=new JFrame("TabbedView");
+	frame.setLayout(new FlowLayout());
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	JPanel panel=new JPanel();
+	JLabel name=new JLabel("Name: ");
+	JTextField tname=new JTextField(20);
+	tname.setEditable(true);
+	JLabel group=new JLabel("Group: ");
+	JTextField tgroup=new JTextField(5);
+	JButton button=new JButton("Enter");
+	panel.add(name);
+	panel.add(tname);
+	panel.add(group);
+	panel.add(tgroup);
+
+	JTextField displayer=new JTextField(25);
+	displayer.setEditable(false);
+	button.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent ae) {
+			String str=tname.getText();
+			String str2=tgroup.getText();
+			Font font=new Font("Times New Roman",10,20);
+			displayer.setBackground(new Color(122,123,129));
+			displayer.setFont(font);
+			displayer.setText(str+' '+str2);
+		}
+	});
+	panel.add(button);
+	panel.add(displayer);
+	frame.add(panel);
+	frame.pack();
+	frame.setSize(500,500);
+	frame.setVisible(true);
+}
+}
+
+
+/*. Implement a graphical application that displays 3 TextField components
+for setting the amounts of R, G and B from a color. After pressing a button,
+a Label component will display a text representing the specified quantities,
+with the resulting color, if the values are correct (numerical, between 
+0-255). Oherwise, an error message will be displayed with red. 
+Try to use exceptions for validating the input
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+public class TabbedView {
+public static void main(String args[]) {
+	JFrame frame=new JFrame("TabbedView");
+	//frame.setLayout(new FlowLayout());
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	JPanel panel = new JPanel();
+	JLabel lred = new JLabel("Red (0-255): ");
+	JTextField red = new JTextField(3);
+	JLabel lgreen = new JLabel("Green (0-255): ");
+	JTextField green = new JTextField(3);
+	JLabel lblue = new JLabel("Blue (0-255): ");
+	JTextField blue = new JTextField(3);
+	JButton button = new JButton("Enter");
+	Dimension dim = new Dimension(100,50);
+	button.setPreferredSize(dim);
+	JLabel result = new JLabel();
+	button.addActionListener(new ActionListener(){
+		   public void actionPerformed(ActionEvent ae){
+			  int r, g, b;
+		      String str1 = red.getText();
+		      String str2 = green.getText();
+		      String str3 = blue.getText();
+		      r=Integer.parseInt(str1);
+		      g=Integer.parseInt(str2);
+		      b=Integer.parseInt(str3);
+		      if(r>255 || r<0 || g>255 || g<0 || b>255 || b<0) {
+		    	  result.setForeground(Color.red);
+		    	  result.setText("ERROR! The numbers introduced are beyond limits!");
+		      }
+		      else {
+		    	  result.setForeground(new Color(r,g,b));
+		    	  result.setText(str1+' '+str2+' '+str3);
+		      }
+		   }
+		});
+	panel.add(lred);
+	panel.add(red);
+	panel.add(lgreen);
+	panel.add(green);
+	panel.add(lblue);
+	panel.add(blue);
+	panel.add(button);
+	panel.add(result);
+	frame.add(panel);
+	frame.pack();
+	frame.setSize(500,500);
+	frame.setVisible(true);
+}
+}
+
+
+/*Write a Java application which includes a sign-up form for an online 
+course. The form includes information regarding the name, surname, year 
+of study, faculty, financing (tax/budget) and the course. The year of study,
+faculty and course are drop-down lists, and the financing is a check-box
+field. In a TextArea field print the filled-in information after the
+Sign-up button is pressed.
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+public class TabbedView {
+public static void main(String args[]) {
+	JFrame frame=new JFrame("SIGN-UP FORM");
+	//frame.setLayout(new FlowLayout());
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	JPanel panel = new JPanel();
+	panel.setLayout(new GridBagLayout());
+	GridBagConstraints pos = new GridBagConstraints();
+	JLabel lname = new JLabel("Name: ");
+	pos.gridx=0;
+	pos.gridy=0;
+	panel.add(lname,pos);
+	JTextField name = new JTextField(15);
+	pos.gridx=1;
+	pos.gridy=0;
+	panel.add(name,pos);
+	JLabel lsurname = new JLabel("Surname: ");
+	pos.gridx=0;
+	pos.gridy=1;
+	panel.add(lsurname,pos);
+	JTextField surname = new JTextField(15);
+	pos.gridx=1;
+	pos.gridy=1;
+	panel.add(surname,pos);
+	JLabel lyear = new JLabel("Year of study: ");
+	pos.gridx=0;
+	pos.gridy=2;
+	panel.add(lyear,pos);
+	String years[] = {"1", "2", "3", "4"};
+	JComboBox year = new JComboBox(years);
+	pos.gridx=1;
+	pos.gridy=2;
+	panel.add(year,pos);
+	JLabel lfaculty = new JLabel("Faculty: ");
+	pos.gridx=0;
+	pos.gridy=3;
+	panel.add(lfaculty,pos);
+	String faculties[] = {"ETTI", "AC", "Constructii", "IE", "Robotica"};
+	JComboBox faculty = new JComboBox(faculties);
+	pos.gridx=1;
+	pos.gridy=3;
+	panel.add(faculty,pos);
+	JLabel lfinancing = new JLabel("Financing: ");
+	pos.gridx=0;
+	pos.gridy=4;
+	panel.add(lfinancing,pos);
+	pos.gridx=1;
+	pos.gridy=4;
+	CheckboxGroup cbg=new CheckboxGroup();
+	Checkbox tax = new Checkbox("Tax",cbg,false);
+	tax.setEnabled(true);
+	panel.add(tax,pos);
+	pos.gridx=2;
+	pos.gridy=4;
+	Checkbox budget = new Checkbox("Budget",cbg,false);
+	budget.setEnabled(true);
+	panel.add(budget,pos);
+	JLabel lcourse = new JLabel("Course: ");
+	pos.gridx=0;
+	pos.gridy=5;
+	panel.add(lcourse,pos);
+	String courses[] = {"Software Engineering", "CAD", "Signals and Systems", "C/C++", "Python"};
+	JComboBox course = new JComboBox(courses);
+	pos.gridx=1;
+	pos.gridy=5;
+	panel.add(course,pos);
+	JButton button = new JButton("SIGN-UP");
+	Dimension dim = new Dimension(100,50);
+	button.setPreferredSize(dim);
+	JTextArea results = new JTextArea();
+	button.addActionListener(new ActionListener(){
+		   public void actionPerformed(ActionEvent ae){
+			 String rname = name.getText();
+			 String rsurname = surname.getText();
+			 String ryear = (String)year.getSelectedItem();
+			 String rfaculty = (String)faculty.getSelectedItem();
+			 String rcourse = (String)course.getSelectedItem();
+			 if(tax.getState()==true) 
+				 results.setText("The name: "+rname+" "+rsurname+"\n"+"The year: "+ryear+"\n"+"The faculty: "+rfaculty+"\n"+"Studying: "+rcourse+"\nTAX");
+			 else 
+			 if(budget.getState()==true)
+				 results.setText("The name: "+rname+" "+rsurname+"\n"+"The year: "+ryear+"\n"+"The faculty: "+rfaculty+"\n"+"Studying: "+rcourse+"\nBUDGET");
+		   }
+		   });
+	pos.gridx=4;
+	pos.gridy=6;
+	panel.add(button,pos);
+	pos.gridx=0;
+	pos.gridy=7;
+	results.setEditable(false);
+	panel.add(results,pos);
+	frame.add(panel);
+	frame.pack();
+	frame.setSize(500,500);
+	frame.setVisible(true);
+}
+}

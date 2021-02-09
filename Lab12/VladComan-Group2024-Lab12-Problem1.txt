@@ -1,0 +1,220 @@
+/*Implement a Java application that uses GridLayout for arranging the 
+components specific to a computing application. (TextField for I/O 
+operations, buttons for numbers, mathematical operations, screen 
+cleaning, etc.).
+FUNCTIONALITIES
+Vlad Coman, Group 2024
+31.05.2020
+*/
+package lab12;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+class MyFrame extends JFrame{
+	private static final long serialVersionUID = 1L;
+	MyFrame(){
+		super();
+		ButtonPanel b=new ButtonPanel("Operations");
+		Label l=new Label("I/O:");
+		this.add(l);
+		this.add(b.getT());
+		this.add(b);
+		this.setSize(400,400);
+		this.setLayout(new FlowLayout());
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+	}
+}
+class ButtonPanel extends JPanel{
+	private static final long serialVersionUID = 1L;
+	JTextArea t;
+	public ButtonPanel(String title) {
+		super(new GridLayout(4,5));
+		t=new JTextArea(1,25);
+		setBackground(Color.cyan);
+		setBorder(BorderFactory.createTitledBorder(title));
+		JButton b1=new JButton("7");
+		b1.setPreferredSize(new Dimension(50,50));
+		JButton b2=new JButton("8");
+		JButton b3=new JButton("9");
+		JButton b4=new JButton("/");
+		JButton b5=new JButton("4");
+		JButton b6=new JButton("5");
+		JButton b7=new JButton("6");
+		JButton b8=new JButton("*");
+		JButton b9=new JButton("1");
+		JButton b10=new JButton("2");
+		JButton b11=new JButton("3");
+		JButton b12=new JButton("-");
+		JButton b13=new JButton("0");
+		JButton b14=new JButton("Clear");
+		JButton b15=new JButton("+");
+		JButton b16=new JButton("=");
+		b16.setForeground(Color.white);
+		b16.setBackground(Color.black);
+		b1.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				   t.append("7");
+			   }
+			});
+		b2.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("8");
+			   }
+			});
+		b3.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("9");
+			   }
+			});
+		b4.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("/");
+			   }
+			});
+		b5.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("4");
+			   }
+			});
+		b6.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("5");
+			   }
+			});
+		b7.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("6");
+			   }
+			});
+		b8.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("*");
+			   }
+			});
+		b9.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("1");
+			   }
+			});
+		b10.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("2");
+			   }
+			});
+		b11.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("3");
+			   }
+			});
+		b12.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("-");
+			   }
+			});
+		b13.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("0");
+			   }
+			});
+		b14.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.setText(null);
+			   }
+			});
+		b15.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 t.append("+");
+			   }
+			});
+		b16.addActionListener(new ActionListener(){
+			   public void actionPerformed(ActionEvent ae){
+				 String str=t.getText();
+				 int i=0;
+				 int n1,n2;
+				 float res;
+				 if(str.substring(0).contains("+")==true) {
+					 for(i=0;i<str.length();i++) {
+						 if(str.charAt(i)=='+') {
+							 break;
+						 }
+					 }
+					 n1=Integer.parseInt(str.substring(0,i));
+					 n2=Integer.parseInt(str.substring(i));
+					 res=n1+n2;
+					 t.setText(Float.toString(res));
+					 i=0;
+				 }
+				 if(str.substring(0).contains("-")==true) {
+					 for(i=0;i<str.length();i++) {
+						 if(str.charAt(i)=='-') {
+							 break;
+						 }
+					 }
+					 n1=Integer.parseInt(str.substring(0,i));
+					 n2=Integer.parseInt(str.substring(i+1));
+					 res=n1-n2;
+					 t.setText(Float.toString(res));
+					 i=0;
+				 }
+				 if(str.substring(0).contains("/")==true) {
+					 for(i=0;i<str.length();i++) {
+						 if(str.charAt(i)=='/') {
+							 break;
+						 }
+					 }
+					 n1=Integer.parseInt(str.substring(0,i));
+					 n2=Integer.parseInt(str.substring(i+1));
+					 res=n1/(float)n2;
+					 if(n2==0) {
+						 t.setText("ERROR! YOU CANNOT DIVIDE BY 0");
+						 t.setForeground(Color.red); 
+					 }
+					 else {
+					 t.setText(Float.toString(res));
+					 }
+					 i=0;
+				 }
+				 if(str.substring(0).contains("*")==true) {
+					 for(i=0;i<str.length();i++) {
+						 if(str.charAt(i)=='*') {
+							 break;
+						 }
+					 }
+					 n1=Integer.parseInt(str.substring(0,i));
+					 n2=Integer.parseInt(str.substring(i+1));
+					 res=n1*n2;
+					 t.setText(Float.toString(res));
+					 i=0;
+				 }
+			   }
+			});
+		t.setEditable(false);
+		add(b1);
+		add(b2);
+		add(b3);
+		add(b4);
+		add(b5);
+		add(b6);
+		add(b7);
+		add(b8);
+		add(b9);
+		add(b10);
+		add(b11);
+		add(b12);
+		add(b13);
+		add(b14);
+		add(b15);
+		add(b16);
+	}
+	JTextArea getT() {
+		return t;
+	}
+}
+
+public class Lab12 {
+	public static void main(String args[]) {
+		new MyFrame();
+	}
+}

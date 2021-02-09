@@ -1,0 +1,57 @@
+/*. Write a Frame application that draws a schematic car. 
+Use different colors for different car parts (doors, wheels, etc.)
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import java.awt.event.*;
+class MyFrame extends Frame {
+	private static final long serialVersionUID = 1L;
+	MyFrame(String title){
+	super(title);
+	MyCanvas canvas=new MyCanvas();
+	add(canvas);
+	setLayout(new FlowLayout());
+	this.addWindowListener(new ExitListener());
+	setSize(600, 530);
+	setVisible(true);
+	}
+	}
+class ExitListener extends WindowAdapter {//closing with adapter class
+	 @Override
+	 public void windowClosing(WindowEvent event) {
+	 System.exit(0);
+	}
+}
+class MyCanvas extends Canvas{
+	private static final long serialVersionUID = 1L;
+	public MyCanvas() {
+		this.setSize(new Dimension(600, 490));
+		this.setBackground(new Color(0, 0, 0));
+	}
+	public void paint(Graphics g) {
+		Font font=new Font("Verdana", 10, 20);
+		g.setColor(Color.blue);
+		g.fillRoundRect(30, 150, 500, 150, 50, 50);
+		g.setColor(Color.magenta);
+		g.fillRect(140, 50, 300, 100);
+		g.setColor(Color.gray);
+		g.fillOval(90, 300, 100, 100);
+		g.fillOval(380, 300, 100, 100);
+		g.setColor(Color.cyan);
+		g.fillRoundRect(200, 60, 200, 80, 50, 50);
+		g.setFont(font);
+		g.setColor(Color.darkGray);
+		g.drawString("FORD", 65, 200);
+		g.setColor(Color.red);
+		g.fillRect(300, 160, 80, 120);
+		g.setColor(Color.yellow);
+		g.fillOval(320, 200, 20, 20);
+		}
+}
+public class Main{
+public static void main(String args[]) {
+	MyFrame frame = new MyFrame("Color Palette");
+}
+}

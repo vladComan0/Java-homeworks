@@ -1,0 +1,27 @@
+/* Using a KB reading mechanism (BufferedReader/InputStreamReader) input: a message of String type, a day as an
+integer, a month as a String and a year as an integer variable. The process will end by passing to a new line, or by typing
+a special String. Separate and display the tokens on different rows.
+Recommendation: use the StreamTokenizer class, the attributes sval, nval and the TT_EOL constant.
+Consider the case in which the application is not aware of the entered data type (numbers, words). Use the constants
+TT_NUMBER, TT_WORD.
+Vlad Coman, Group 2024
+02.05.2020
+ * */
+import java.io.*;
+public class Lab08{
+	public static void main(String []args) {
+		try {
+			BufferedReader cin=new BufferedReader (new InputStreamReader(System.in));
+			StreamTokenizer tok=new StreamTokenizer(cin);
+			while(tok.nextToken() != StreamTokenizer.TT_EOL) {
+			if(tok.ttype == StreamTokenizer.TT_WORD)
+				System.out.println("Cuvant: "+tok.sval);
+			if(tok.ttype == StreamTokenizer.TT_NUMBER)
+				System.out.println("Numar: "+tok.nval);
+			}
+		cin.close();
+		}catch (IOException e) {
+			System.out.println("Eroare la citire!"+e);
+		}
+	}
+}

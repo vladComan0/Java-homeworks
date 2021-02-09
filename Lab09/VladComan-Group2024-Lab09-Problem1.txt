@@ -1,0 +1,51 @@
+/*Write a Java application which contains a class which implements 
+the Runnable interface. The class' constructor sets the name of the 
+instantiated object. Also, there is a class variable which counts the 
+number of instantiated objects from that class. The run( ) method of 
+the class will print out the object's name for a number of times equal 
+to the counter's value and delayed by 1000 msec. From a separate class, 
+create multiple threads build from separate objects of the previously 
+described class. Analyze the results.
+Vlad Coman, Group 2024
+08.05.2020
+ * */
+package homework;
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+
+class MyRunnable implements Runnable{
+	private String name;
+	private static int count;
+	MyRunnable(){
+		super();
+		count++;
+	}
+	MyRunnable(String name){
+		this.name=name;
+		count++;
+	}
+	@Override
+	public void run() {
+		for(int i=0;i<count;i++) {
+		System.out.println(name);
+		try {
+			TimeUnit.SECONDS.sleep(1);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+	}
+	
+}
+public class homework {//Asynchronous
+	private Scanner cin=new Scanner(System.in);
+	public static void main (String[] args) {
+		Thread thread1=new Thread(new MyRunnable("Thread_name1"));
+		Thread thread2=new Thread(new MyRunnable("Thread_name2"));
+		Thread thread3=new Thread(new MyRunnable("Thread_name3"));
+		thread1.start();
+		thread2.start();
+		thread3.start();
+	}
+}

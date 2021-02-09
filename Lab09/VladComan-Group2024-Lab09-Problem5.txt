@@ -1,0 +1,68 @@
+/*Write a Java app which computes the greatest common divisor for large numbers (>100.000). The app will continuosly read from the keyboard pairs of numbers and launch threads for each of the pairs.
+The results will be displayed in the console as soon as they are available.
+Vlad Coman, Group 2024
+05.10.2020*/
+import java.util.Scanner;
+import java.io.*;
+
+class GCD {
+	private int x,y;
+	GCD() {
+		x = 0;
+		y = 0;
+	}
+	GCD(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	int div() {
+		while(x!=y){
+		if (x >= y)
+			x-=y;
+		if (x < y)
+			y-=x;
+	}
+		return x;
+	}
+
+	synchronized void afis(int x) {
+		System.out.println("The Greatest Common Divider is: " + x);
+	}
+}
+
+class MyThread implements Runnable {
+	GCD ob;
+	Thread thread;
+
+	MyThread(int x, int y) {
+		ob = new Div(x, y);
+		thread = new Thread(this);
+		thread.start();
+	}
+
+	@Override
+	public void run() {
+		ob.afis(ob.div());
+	}
+}
+
+public class Homework {
+	public static void main(String args[]) throws InterruptedException {
+		Scanner cin = new Scanner(System.in);
+		int x, y;
+		String str = NULL;
+		while (str.compareTo("A") != 0) {
+			System.out.println("Introduce two numbers greater than 100000:");
+			System.out.println("Introduce x: ");
+			x = cin.nextInt();
+			System.out.println("Introduce y: ");
+			y = cin.nextInt();
+			assert (x > 100000 && y > 100000) : "Not large enough!";
+			MyThread test = new MyThread(x, y);
+			test.t.join();
+			System.out.print("Introduce another pair or press A to stop");
+			str = cin.next();
+		}
+	}
+}

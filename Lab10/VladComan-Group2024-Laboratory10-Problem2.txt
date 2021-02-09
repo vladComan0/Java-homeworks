@@ -1,0 +1,52 @@
+/*Write a Frame application that will draw, inside a Canvas component, 
+a circle tangent to smaller side of the canvas
+Vlad Coman, Group 2024
+18.05.2020
+*/
+package lab10;
+import java.awt.*;
+import java.awt.event.*;
+class MyFrame extends Frame {
+	private static final long serialVersionUID = 1L;
+	MyFrame(String title){
+	super(title);
+	MyCanvas canvas=new MyCanvas(200,100);
+	add(canvas);
+	setLayout(new FlowLayout());
+	this.addWindowListener(new ExitListener());
+	setSize(300, 300);
+	setVisible(true);
+	}
+	}
+class ExitListener extends WindowAdapter {//closing with adapter class
+	 @Override
+	 public void windowClosing(WindowEvent event) {
+	 System.exit(0);
+	}
+}
+class MyCanvas extends Canvas{
+	private static final long serialVersionUID = 1L;
+	Graphics g;
+	int x, y;
+	MyCanvas(int x, int y){
+		this.x=x;
+		this.y=y;
+		this.setSize(new Dimension(x, y));
+		this.setBackground(Color.blue);
+	}
+	@Override
+	public void paint(Graphics g) {
+		g.setColor(Color.white);
+		if(x>y) {
+		g.fillOval(0, 10, 50, 50);
+		}
+		else{
+			g.fillOval(10, 0, 50, 50);
+		}
+	}
+}
+public class Main{
+public static void main(String args[ ]) {
+	MyFrame frame = new MyFrame("Circle Application");
+}
+}

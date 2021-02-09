@@ -1,0 +1,91 @@
+/* Write a class for determining a certain value from Fibonacci’s array. The class has 2 methods, one for calculating and the other for displaying the desired value. 
+Use a synchronized multithreading mechanism in which one process displays all the Fibonacci numbers smaller than the desired value computed by the other process.
+Vlad Coman, Group 2024
+05.10.2020
+*/
+import java.util.Scanner;
+import java.io.*;
+
+class Fibonacci {
+
+	int calc(int n) {
+		int a = 0, b=1, ans=1;
+		if (n == 0)
+			ans = -1;
+	else if (n == 1)
+			ans = 0;
+	else if (n == 2)
+			ans = 1;
+		for (int i = 2; i < n; i++) {
+			ans = a + b;
+			a = b;
+			b = ans;
+		}
+		return ans;
+	}
+
+	synchronized void show(int val) {
+		System.out.print(val + " ");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			System.out.println("Interruption");
+		}
+
+	}
+}
+
+class MyRunnable implements Runnable {
+	Fibonacci ob;
+	int x;
+	Thread thread;
+
+	public MyRunnable(Fibonacci ob1, int y) {
+		ob = ob1;
+		x = y;
+		thread = new Thread(this);
+		thread.start();
+	}
+
+	@Override
+	public void run() {
+		for (int i = 1; i < x; i++) {
+			ob.show(ob.calc(i));
+		}
+	}
+
+}
+
+class C implements Runnable {
+	Fibonacci ob;
+	int x;
+	Thread thread;
+
+	public Calculare(Fibonacci ob1, int y) {
+		ob = ob1;
+		x = y;
+		thread = new Thread(this);
+		thread.start();
+	}
+
+	@Override
+	public void run() {
+		ob.show(ob.calc(x));
+
+	}
+
+}
+
+public class Homework {
+	public static void main(String args[]) throws InterruptedException {
+		Scanner cin = new Scanner(System.in);
+		Fibonacci ob1 = new Fibonacci();
+		int nr;
+		System.out.println("Which termen?");
+		nr = cin.nextInt();
+		MyRunnable f = new MyRunnable(ob1, nr);
+		f.t.join();
+		Calculare val = new Calculare(ob1, nr);
+		val.t.join();
+	}
+}

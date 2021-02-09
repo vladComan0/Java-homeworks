@@ -1,0 +1,58 @@
+/*  Write a Java application which reads a set of text files which contain 
+ * student information from the current study year. The files are stored 
+ * locally under the names Year_Y_Group_XXXX.txt . Agregate the information 
+ * in this file using a SequenceInputStream and generate a new file which 
+ * contains all the students ordered alphabetically.
+Vlad Coman, Group 2024
+02.05.2020
+ * */
+import java.util.*;
+import java.io.*;
+public class Lab08 {
+	public static void main(String args[]) {
+		FileInputStream f1 = null;
+		FileInputStream f2 = null;
+		FileInputStream f3 = null;
+		FileInputStream f4 = null;
+		SequenceInputStream f = null;
+		SequenceInputStream g = null;
+		SequenceInputStream namesfile=null;
+		int n = 0;
+		int m = 0;
+		String names[] = new String[200];
+		try {
+			f1 = new FileInputStream("Year_2_Group_2021.txt");
+			f2 = new FileInputStream("Year_2_Group_2022.txt");
+			f3 = new FileInputStream("Year_2_Group_2023.txt");
+			f4 = new FileInputStream("Year_2_Group_2024.txt");
+			f = new SequenceInputStream(f1, f2);
+			g = new SequenceInputStream(f3, f4);
+			namesfile = new SequenceInputStream(f,g);
+			StreamTokenizer str = new StreamTokenizer(namesfile);
+			while (str.nextToken() != StreamTokenizer.TT_EOF) {
+				names[n] = str.sval;
+				n++;
+			}
+			Scanner scan = new Scanner(namesfile);
+			while (scan.hasNext()) {
+				names[m] = scan.next();
+				m++;
+			}
+			for (int i = 0; i < names.length - 1; i++)
+				for (int k = i + 1; k < names.length; k++) {
+					if (names[i].compareTo(names[k]) > 0) {
+						String temp = names[i];
+						names[i] = names[k];
+						names[k] = temp;
+					}
+				}
+			FileOutputStream fos = new FileOutputStream("final.txt");
+			for (int i = 0; i < n; i++)
+				fos.write(names[i].getBytes());
+			fos.close();
+		} catch (IOException e) {
+			System.out.println("Error" + e.toString());
+		}
+
+	}
+}

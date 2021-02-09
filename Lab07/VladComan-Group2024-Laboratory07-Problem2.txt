@@ -1,0 +1,126 @@
+/* Write a class called Calculator which has the methods to do addition, 
+ * subtraction, multiplication and division. The methods will take generic 
+ * input variables and will return the corresponding type. For example, the 
+ * sum of two integers should return an integer, and for floats it should 
+ * return a float. Same for division. Adding and subtracting is allowed for
+ * String variables as well, but the multiplication and division will print 
+ * an error message.
+ * Vlad Coman, Group 2024
+ * 24.04.2020
+ * */
+package Laboratory07;
+import java.util.Scanner;
+class Calculator <T>{
+	public T add(T x, T y){
+		T sum=null;
+		if(x.getClass()==Integer.class && y.getClass()==Integer.class) {
+			sum=(T) (Integer) ( (Integer) x + (Integer) y );
+			return sum;
+		}
+		if(x.getClass()==Double.class && y.getClass()==Double.class) {
+			sum=(T) (Double) ( (Double) x + (Double) y );
+			return sum;
+		}
+		if(x.getClass()==String.class && y.getClass()==String.class) {
+			sum=(T) (String) ( (String) x + (String) y );
+			return sum;
+		}
+		String error="The two types are not correct";
+		sum=(T)(String)((String)error);
+		return sum;
+	}
+	public T sub(T x, T y) {
+		T dif=null;
+		String error=null;
+		if(x.getClass()==Integer.class && y.getClass()==Integer.class) {
+			dif=(T) (Integer) ( (Integer) x - (Integer) y );
+			return dif;
+		}
+		if(x.getClass()==Double.class && y.getClass()==Double.class) {
+			dif=(T) (Double) ( (Double) x - (Double) y );
+			return dif;
+		}
+		if(x.getClass()==String.class && y.getClass()==String.class) {
+			error="We cannot substract 2 Strings!";
+			dif=(T) (String) ( (String) error);
+			return dif;
+		}
+		error="The two types are not correct!";
+		dif=(T) (String) ( (String) error);
+		return dif;
+	}
+	public T mult(T x, T y){
+		T p=null;
+		String error=null;
+		if(x.getClass()==Integer.class && y.getClass()==Integer.class) {
+			p=(T) (Integer) ( (Integer) x * (Integer) y );
+			return p;
+		}
+		if(x.getClass()==Double.class && y.getClass()==Double.class) {
+			p=(T) (Double) ( (Double) x * (Double) y );
+			return p;
+		}
+		if(x.getClass()==String.class && y.getClass()==String.class) {
+			error="We cannot multiply 2 Strings!";
+			p=(T) (String) ( (String) error);
+			return p;
+		}
+		error="The two types are not correct";
+		p=(T)(String)((String)error);
+		return p;
+	}
+	public T div(T x, T y){
+		T p=null;
+		String error=null;
+		if(x.getClass()==Integer.class && y.getClass()==Integer.class) {
+			p=(T) (Integer) ( (Integer) x / (Integer) y );
+			return p;
+		}
+		if(x.getClass()==Double.class && y.getClass()==Double.class) {
+			p=(T) (Double) ( (Double) x / (Double) y );
+			return p;
+		}
+		if(x.getClass()==String.class && y.getClass()==String.class) {
+			error="We cannot divide 2 Strings!";
+			p=(T) (String) ( (String) error);
+			return p;
+		}
+		error="The two types are not correct";
+		p=(T)(String)((String)error);
+		return p;
+	}
+}
+public class Main {
+	private static Scanner cin;
+	public static void main(String []args) {
+		cin=new Scanner(System.in);
+		Calculator <Integer> ob1 = new Calculator<Integer>();
+		Calculator <Double> ob2 = new Calculator<Double>();
+		Calculator <String> ob3 = new Calculator<String>();
+		int x1, y1;
+		double x2, y2;
+		String x3=new String();
+		String y3=new String();
+		System.out.println("Introduce two int numbers: ");
+		x1=cin.nextInt();
+		y1=cin.nextInt();
+		System.out.println("Introduce two double numbers: ");
+		x2=cin.nextDouble();
+		y2=cin.nextDouble();
+		System.out.println("Introduce two Strings: ");
+		x3=cin.next();
+		y3=cin.next();
+		System.out.println("The sum of the integers: "+ob1.add(x1, y1));
+		System.out.println("The sum of the doubles: "+ob2.add(x2, y2));
+		System.out.println("The sum of the Strings(concatenated): "+ob3.add(x3, y3));
+		System.out.println("The difference of the integers: "+ob1.sub(x1, y1));
+		System.out.println("The difference of the doubles: "+ob2.sub(x2, y2));
+		System.out.println("The difference of the Strings(error): "+ob3.sub(x3, y3));
+		System.out.println("The multiplication of the integers: "+ob1.mult(x1, y1));
+		System.out.println("The multiplication of the doubles: "+ob2.mult(x2, y2));
+		System.out.println("The multiplication of the Strings(error): "+ob3.mult(x3, y3));
+		System.out.println("The division of the integers: "+ob1.div(x1, y1));
+		System.out.println("The division of the doubles: "+ob2.div(x2, y2));
+		System.out.println("The division of the Strings(error): "+ob3.div(x3, y3));
+	}
+}

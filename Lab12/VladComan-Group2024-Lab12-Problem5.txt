@@ -1,0 +1,137 @@
+/* Write a Java GUI application which includes a course registration form.
+The interface contains 2 TextField components for entering the name and 
+the group and a ComboBox selection list for choosing the course name. The 
+form has a ”Register” button that saves in a file the data entered by the 
+user. Monitor the keyboard events for allowing only letters in the first 
+TextField and only digits in the second one.
+Vlad Coman, Group 2024
+31.05.2020
+*/
+package lab124;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.*;
+import java.io.*;
+class Drawer extends JFrame {
+	Drawer(){
+	super();
+	MyPanel panel=new MyPanel();
+	JButton register=new JButton("Register");
+	Dimension prefferedSize=new Dimension(100,50);
+	register.setPreferredSize(prefferedSize.getSize());
+	register.addActionListener(new ActionListener(){
+		   public void actionPerformed(ActionEvent ae){
+			   try {
+				    String content1 = panel.f1.getText();
+				    String content2 = panel.f2.getText();
+				    String content3 = panel.cb.getSelectedItem().toString();
+				    File file = new File("Form.txt");
+				    if (!file.exists()) {
+				      file.createNewFile();
+				    }
+				    FileWriter fw = new FileWriter(file.getAbsoluteFile());
+				    BufferedWriter bw = new BufferedWriter(fw);
+				    bw.write(content1+"\n");
+				    bw.write(content2+"\n");
+				    bw.write(content3+"\n");
+				    bw.close();
+				  } catch (IOException e) {
+				    e.printStackTrace();
+				  }
+		   }
+		});
+	this.setLayout(new BorderLayout());
+	this.add(panel, BorderLayout.NORTH);
+	JPanel panel2=new JPanel();
+	panel2.setSize(prefferedSize.getSize());
+	panel2.add(register);
+	this.add(panel2);
+	this.setSize(600,600);
+	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	this.setVisible(true);
+	}
+}
+class MyPanel extends JPanel{
+	JTextField f1;
+	JTextField f2;
+	JComboBox cb;
+	public MyPanel(){
+		super(new GridLayout(3,1));
+		JLabel l1=new JLabel("Name: (Only literal values!)");
+		f1=new JTextField(30);
+		JLabel l2=new JLabel("Group: (Only numeric values!)");
+		f2=new JTextField(10);
+		String []courses= {"Software Engineering","Fundamental Electronic Circuits","Databases","Linear Algebra", "Mathematical Analysis"};
+		cb=new JComboBox(courses);
+		JLabel l3=new JLabel("Course: ");
+		f1.addKeyListener(new MyKeyListener());
+		f2.addKeyListener(new MyKeyListener2());
+		add(l1);
+		add(f1);
+		add(l2);
+		add(f2);
+		add(l3);
+		add(cb);
+	}
+	public JTextField getF1() {
+		return f1;
+	}
+	public void setF1(JTextField f1) {
+		this.f1 = f1;
+	}
+	public JTextField getF2() {
+		return f2;
+	}
+	public void setF2(JTextField f2) {
+		this.f2 = f2;
+	}
+	public JComboBox getCb() {
+		return cb;
+	}
+	public void setCb(JComboBox cb) {
+		this.cb = cb;
+	}
+}
+class MyKeyListener implements KeyListener{
+@Override
+public void keyTyped(KeyEvent e) {
+	char c=e.getKeyChar();
+	if(!Character.isLetter(c) && (c != KeyEvent.VK_BACK_SPACE) && (c!=KeyEvent.VK_SPACE)) {
+		e.consume();
+	}
+}
+@Override
+public void keyPressed(KeyEvent e) {
+	
+}
+@Override
+public void keyReleased(KeyEvent e) {
+	
+}
+}
+class MyKeyListener2 implements KeyListener{
+	@Override
+	public void keyTyped(KeyEvent e) {
+		char c=e.getKeyChar();
+		if(!Character.isDigit(c) && (c != KeyEvent.VK_BACK_SPACE)) {
+			e.consume();
+	}
+	}
+	@Override
+	public void keyPressed(KeyEvent e) {
+		
+	}
+	@Override
+	public void keyReleased(KeyEvent e) {		
+	}
+	
+}
+public class Main{
+public static void main(String args[]) {
+	new Drawer();
+}
+}
