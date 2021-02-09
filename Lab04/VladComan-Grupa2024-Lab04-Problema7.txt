@@ -1,0 +1,173 @@
+/*Write an application which defines a class named Child. Define the methods and member variables for this class
+which enble a Child object to store/do the following:
+- the name of the child
+- the child’s birthday
+- the child can introduce him/herself by „saying”: Hello my name is ...
+- the child can tell his/her age
+- the child can add two numbers smaller than 10 and return the result like so: The sum of X and Y is equal to Z
+- the child knows how to say Goodbye!
+- the child can speak the alphabet both in direct and inverse order
+- the child can color a chess board given its dimensions by using alternative colors (for the colors use the
+symbols 1 and 0)
+- the child can play dots and crosses (X-0) by him/herself 😊 (use the application developed in the previous
+homework)
+Remarks: the child’s name and birthday cannot be accessed from outside the class.
+All the information about a Child will be filled-in using a Child object and its associated methods and variables.
+The interaction with the child will be done through an object which is instantiated in the main method.
+Vlad Coman, Group 2024
+03.04.2020
+*/
+import java.util.Scanner;
+import java.util.Random;
+class Child{
+	private String name;
+	private int day, month, year;
+	Child(){
+		name="NULL";
+		day=0;
+		month=0;
+		year=0;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getMonth() {
+		return month;
+	}
+	public void setMonth(int month) {
+		this.month = month;
+	}
+	public int getDay() {
+		return day;
+	}
+	public void setDay(int day) {
+		this.day = day;
+	}
+	public int getYear() {
+		return year;
+	}
+	public void setYear(int year) {
+		this.year = year;
+	}
+	public void sayHello() {
+		System.out.println("Hello, my name is "+getName()+"!");
+	}
+	public void sayAge() {
+		System.out.println("I am approximately "+(2020-getYear())+" years old.");
+	}
+	public void Add(double x, double y) {
+		if(x<10 && y <10)
+			System.out.println("The sum of "+x+" and "+y+" is: "+(x+y));
+		else
+			System.out.println("The numbers are too big for a baby this small!");
+	}
+	public void sayGoodbye() {
+		System.out.println("Goodbye! Nice to meet you.");
+	}
+	public void sayAlphDir() {
+		System.out.println("The alphabet in direct order is: A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z");
+	}
+	public void sayAlphRev() {
+		System.out.println("The alphabet in reverse order is: Z,Y,X,W,V,U,T,S,R,Q,P,O,N,M,L,K,J,I,H,G,F,E,D,C,B,A");
+	}
+	public void colorChessboard(int n) {
+		int [][]arr=new int[n][n];
+		for(int i=0;i<n;i++)
+			for(int j=0;j<n;j++)
+				if((i%2==0 && j%2==1) || (i%2==1 && j%2==0))
+					arr[i][j]=1;
+				else arr[i][j]=0;
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr[i].length;j++)
+				System.out.print(arr[i][j]+" ");
+			System.out.print("\n");
+		}
+	}
+	public void playXO() {
+		Random rand=new Random();
+		char arr[][]=new char[3][3];
+		int x=0, y=0;
+		arr[rand.nextInt(arr.length)][rand.nextInt(arr.length)]='X';
+		for(int i=0;i<arr.length;i++)
+			for(int j=0;j<arr[i].length;j++)
+				if(arr[i][j]=='X') {
+					x=i;
+					y=j;
+					break;
+				}
+		if(y==2)
+			arr[x+1][y]='O';
+		else
+			arr[x][y+1]='O';
+		for(int i=0;i<arr.length;i++)
+			for(int j=0;j<arr[i].length;j++)
+				if(Character.isAlphabetic(arr[i][j])==false) {
+					x=i;
+					y=j;
+					break;
+				}
+		arr[x][y]='X';
+		for(int i=0;i<arr.length;i++)
+			for(int j=0;j<arr[i].length;j++)
+				if(arr[i][j]=='X') {
+					x=i;
+					y=j;
+					break;
+				}
+		if(x==2 || arr[x+1][y]=='O' || arr[x+1][y]=='X')
+			arr[x][y+1]='O';
+		else arr[x+1][y]='O';
+		for(int i=0;i<arr.length;i++)
+			for(int j=0;j<arr[i].length;j++)
+				if(Character.isAlphabetic(arr[i][j])==false) {
+					x=i;
+					y=j;
+					break;
+				}
+		arr[x][y]='X';
+		for(int i=0;i<arr.length;i++)
+			for(int j=0;j<arr[i].length;j++)
+				if(arr[i][j]=='X') {
+	}
+}
+public class MyClass {
+	private static Scanner cin;
+	public static void main(String []args) {
+		cin=new Scanner(System.in);
+		Child ob1=new Child();
+		String name=new String();
+		int day, month, year;
+		System.out.println("Introduce the name: ");
+		name=cin.next();
+		ob1.setName(name);
+		System.out.println("Introduce the day the child was born: ");
+		day=cin.nextInt();
+		ob1.setDay(day);
+		System.out.println("Now the month: ");
+		month=cin.nextInt();
+		ob1.setMonth(month);
+		System.out.println("And finally the year: ");
+		year=cin.nextInt();
+		ob1.setYear(year);
+		ob1.sayHello();
+		ob1.sayAge();
+		double x, y;
+		System.out.println("Now introduce the numbers you want the baby to add: ");
+		System.out.print("X= ");
+		x=cin.nextDouble();
+		System.out.print("\nY= ");
+		y=cin.nextDouble();
+		ob1.Add(x, y);
+		ob1.sayAlphDir();
+		ob1.sayAlphRev();
+		int n;
+		System.out.println("Introduce the dimensions of the chessboard: \nn= ");
+		n=cin.nextInt();
+		System.out.println("The chessboard of dimensions: "+n+"x"+n+" is");
+		ob1.colorChessboard(n);
+		ob1.sayGoodbye();
+	}
+}

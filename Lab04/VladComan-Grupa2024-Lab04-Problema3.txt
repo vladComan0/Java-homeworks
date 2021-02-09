@@ -1,0 +1,69 @@
+/*Write a Java class that models a matrix of integer values. The dimensions and the array of elements are private
+attributes and are controlled using appropriate setter-getter methods. Write the methods for displaying the
+matrix, for determining and returning the number of 9 adjacent elements cells that don’t differ with more than
+5% from a threshold value.
+Vlad Coman, Group 2024
+03.04.2020
+*/
+import java.util.Scanner;
+class Matrics{
+	private int m, n;
+	private int arr[][];
+	public int[][] getArr() {
+		return arr;
+	}
+	public void setArr(int arr[][]) {
+		this.arr = arr;
+	}
+	public int getN() {
+		return n;
+	}
+	public void setN(int n) {
+		this.n = n;
+	}
+	public int getM() {
+		return m;
+	}
+	public void setM(int m) {
+		this.m = m;
+	}
+	public void display(int m, int n, int [][]arr) {
+		for(int i=0;i<m;i++) {
+			for(int j=0;j<n;j++) 
+				System.out.print(arr[i][j]+" ");
+		System.out.println(" ");
+			}
+	}
+	public int adjacent(int m, int n, int [][]arr, int th) {
+		float k=5/(float)100*th;
+		int nr=0;
+		for(int i=0;i<m;i++)
+			for(int j=0;j<n;j++)
+				if(arr[i][j]>=k || arr[i][j]<k) 
+					nr++;
+		return nr;
+	}
+}
+public class MyClass {
+	private static Scanner cin;
+	public static void main(String []args) {
+		cin=new Scanner(System.in);
+		int m, n;
+		System.out.println("Introduceti valorile pentru m si n: ");
+		System.out.println("m= ");
+		m=cin.nextInt();
+		System.out.println("n= ");
+		n=cin.nextInt();
+		int [][]arr=new int[m][n];
+		System.out.println("Introduceti elementele matricii: ");
+		for(int i=0;i<m;i++)
+			for(int j=0;j<n;j++)
+				arr[i][j]=cin.nextInt();
+		Matrics ob1=new Matrics();
+		ob1.setArr(arr);
+		ob1.setM(m);
+		ob1.setN(n);
+		ob1.display(m, n, arr);
+		System.out.println("Numarul de elemente adiacente care nu difera cu 5% fata de 10 este: "+ob1.adjacent(m,n,arr,10));
+	}
+}

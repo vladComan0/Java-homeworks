@@ -1,0 +1,76 @@
+/*Develop a Java program which defines a class named Person that contains as private attributes: name
+(String), latitude and longitude (float). The class contains an explicit constructor without parameters that
+will initialize the latitude and longitude with 0 and the string with null. A finalize() method will be used
+as a destructor from C++ and will display a message. The mutator methods, setName(), setLongitude() and
+setLatitude() will be defined to modify the attributes of the class. Define appropriate accesor methods.
+Instantiate n objects, read the corresponding data from the keyboard and display the information related to all
+the objects.
+Vlad Coman, Group 2024
+03.04.2020
+*/
+import java.util.Scanner;
+class Person{
+	private String name;
+	private float latitude, longitude;
+	Person(){
+		this.name="NULL";
+		this.latitude=0;
+		this.longitude=0;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public float getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(float latitude) {
+		this.latitude = latitude;
+	}
+	public float getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(float longitude) {
+		this.longitude = longitude;
+	}
+	protected void finalize() {
+		this.name="NULL";
+		this.latitude=0;
+		this.longitude=0;
+		System.out.println("S-a apelat destructorul!");
+	}
+}
+public class MyClass {
+	private static Scanner cin;
+	public static void main(String []args) {
+		cin=new Scanner(System.in);
+		String name=new String();
+		float latitude, longitude;
+		int n;
+		System.out.println("Introduceti numarul de persoane: ");
+		n=cin.nextInt();
+		Person []arr=new Person[n];
+		for(int i=0;i<arr.length;i++) {
+			arr[i]=new Person();
+		}
+		for(int i=0;i<arr.length;i++) {
+			System.out.println("Introdu un nume: ");
+			name=cin.next();
+			arr[i].setName(name);
+			System.out.println("Introdu latitudinea: ");
+			latitude=cin.nextFloat();
+			arr[i].setLatitude(latitude);
+			System.out.println("Introdu longitudinea: ");
+			longitude=cin.nextFloat();
+			arr[i].setLongitude(longitude);
+		}
+		for(int i=0;i<arr.length;i++) {
+			System.out.println("Informatiile persoanelor sunt: ");
+			System.out.println(arr[i].getName()+" "+arr[i].getLatitude()+" "+arr[i].getLongitude());
+		}
+		for(int i=0;i<arr.length;i++)
+			arr[i].finalize;
+	}
+}

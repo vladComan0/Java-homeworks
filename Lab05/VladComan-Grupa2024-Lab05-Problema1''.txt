@@ -1,0 +1,77 @@
+/** Use the structure used at 1’ and implement lambda expressions to define the arithmetic operations. Check the
+functionality.
+Vlad Coman, Group 2024
+11.03.2020*/
+import java.util.Scanner;
+import java.lang.Math;
+interface Test1 {
+	double addition(double a, double b);
+}
+
+interface Test2 {
+	double substraction(double a, double b);
+}
+
+interface Test3 {
+	double multiplication(double a, double b);
+}
+
+interface Test4 {
+	double division(double a, double b);
+}
+
+interface Test5 {
+	double squareroot(double a, double b);
+}
+
+interface Test6 {
+	double power(double a, double b);
+}
+
+class Implementation {
+	private double addition(double a, double b, Test1 suma) {
+		return suma.addition(a, b);
+	}
+
+	private double substraction(double a, double b, Test2 diferenta) {
+		return diferenta.substraction(a, b);
+	}
+
+	private double multiplication(double a, double b, Test3 produs) {
+		return produs.multiplication(a, b);
+	}
+
+	private double division(double a, double b, Test4 impartire) {
+		return impartire.division(a, b);
+	}
+
+	private double squareroot(double a, double b, Test5 radacina) {
+		return radacina.squareroot(a, b);
+	}
+
+	private double power(double a, double b, Test6 putere) {
+		return putere.power(a, b);
+	}
+
+	public static void main(String args[]) {
+		Scanner cin = new Scanner(System.in);
+		Implementation ob = new Implementation();
+		System.out.print("Read two numbers from the keyboard: ");
+		System.out.print("\nFirst number: x = ");
+		double x = cin.nextInt();
+		System.out.print("\nSecond number: y = ");
+		double y = cin.nextInt();
+		Test1 addition = (double a, double b) -> a + b;
+		Test2 difference = (double a, double b) -> a - b;
+		Test3 product = (double a, double b) -> a * b;
+		Test4 division = (double a, double b) -> a / b;
+		Test5 root = (double a, double b) -> Math.pow(a, 1 / b);
+		Test6 power = (double a, double b) -> Math.pow(a, b);
+		System.out.print("\nThe sum of the two numbers is: " + ob.addition(x, y, addition));
+		System.out.print("\nThe difference of the two numbers is: " + ob.substraction(x, y, difference));
+		System.out.print("\nThe product of the two numbers is: " + ob.multiplication(x, y, product));
+		System.out.print("\nThe division of the first number by the second is: " + ob.division(x, y, division));
+		System.out.print("\nThe root of oreder y of x is: " + ob.squareroot(x, y, root));
+		System.out.print("\nThe first number to the power of the second is: " + ob.power(x, y, power));
+	}
+}

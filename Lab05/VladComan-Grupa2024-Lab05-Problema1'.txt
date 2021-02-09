@@ -1,0 +1,91 @@
+/**’. Instead of an interface that contains all the aforementioned methods, implement 4 functional interfaces, one for
+each method.
+The interfaces will be implemented within a single class. Instantiate the class and check the implemented operations.
+Vlad Coman, Group 2024
+11.03.2020*/
+import java.util.Scanner;
+import java.lang.Math;
+interface Test{
+		double addition(double a, double b);
+}
+interface Test1{
+	double substraction(double a, double b);
+}
+interface Test2{
+	double multiplication(double a, double b);
+}
+interface Test3{
+	double division(double a, double b);
+}
+interface Test4{
+	double squareroot(double a);
+}
+interface Test5{
+	double power(double a, double b);
+}
+class Implementation implements Test, Test1, Test2, Test3, Test4, Test5{
+	private double a, b;
+	Implementation(double a, double b){
+		this.setA(a);
+		this.setB(b);
+	}
+	Implementation(){
+		this.setA(0);
+		this.setB(0);
+	}
+	public double getA() {
+		return a;
+	}
+	public void setA(double a) {
+		this.a = a;
+	}
+	public double getB() {
+		return b;
+	}
+	public void setB(double b) {
+		this.b = b;
+	}
+	@Override
+	public double addition(double a, double b) {
+		return a+b;
+	}
+	@Override
+	public double substraction(double a, double b) {
+		return a-b;
+	}
+	@Override
+	public double multiplication(double a, double b) {
+		return a*b;
+	}
+	@Override
+	public double division(double a, double b) {
+		return a/b;
+	}
+	@Override
+	public double squareroot(double a) {
+		return Math.sqrt(a);
+	}
+	@Override
+	public double power(double a, double b) {
+		return Math.pow(a, b);
+	}
+	
+}
+public class lab5 {
+	private static Scanner cin=new Scanner(System.in);
+	public static void main(String []args) {
+		double a, b;
+		Implementation calculator=new Implementation();
+		System.out.println("Introduceti doua numere de tip double: ");
+		a=cin.nextDouble();
+		b=cin.nextDouble();
+		calculator.setA(a);
+		calculator.setB(b);
+		System.out.println("Suma numerelor este: "+calculator.addition(a, b));
+		System.out.println("Diferenta numerelor este: "+calculator.substraction(a, b));
+		System.out.println("Produsul numerelor este: "+calculator.multiplication(a, b));
+		System.out.println("Rezultatul impartirii celor doua numere este: "+calculator.division(a, b));
+		System.out.println("Radical din numarul "+a+" este: "+calculator.squareroot(a));
+		System.out.println(a+" la puterea "+b+" este: "+calculator.power(a, b));
+	}
+}

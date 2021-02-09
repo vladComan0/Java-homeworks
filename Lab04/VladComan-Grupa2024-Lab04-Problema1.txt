@@ -1,0 +1,67 @@
+/*Write a class named Methods having 3 methods: a method with a variable number of integer parameters, which
+returns the arithmetic mean of the parameters; another method in which will be defined a one-dimensional 
+array of n double-type numbers (n being the parameter of the method and which will be read in main () from
+the keyboard), its elements will receive randomly generated values and the method will return this array; a
+static method that receives as a parameter a character array, converts the respective characters into uppercase
+letters and forms a String object from this array, which will be returned by the function. From the main ()
+method, defined in another class, call the methods of the Methods class and display the results on the screen
+(the call values for the first method and the character string for the 3rd method will be defined in main ()).
+Vlad Coman, Group 2024
+03.04.2020
+*/
+import java.util.Random;
+import java.util.Scanner;
+class Methods{
+	double Method1(int... value) {
+		int s=0;
+		for(int element:value)
+			s+=element;
+		return (double)s/value.length;
+	}
+	double[] Method2(int n) {
+		double []arr=new double[n];
+		Random rand=new Random();
+		int x;
+		for(int i=0;i<n;i++) {
+			x=rand.nextInt(100);
+			arr[i]=x+rand.nextDouble();
+		}
+		return arr;
+	}
+	static String Method3(char []arr) {
+		String str;
+		for(int i=0;i<arr.length;i++){
+			arr[i]=Character.toUpperCase(arr[i]);
+		}
+		str=new String(arr);
+		return str;
+	}
+}
+public class MyClass {
+	private static Scanner cin;
+	public static void main(String []args) {
+		Methods ob1=new Methods();
+		cin=new Scanner(System.in);
+		int n, arr[];
+		System.out.println("Introduceti o valoare pentru n: ");
+		n=cin.nextInt();
+		arr=new int[n];
+		System.out.println("Introduceti valori pentru cele "+n+" elemente");
+		for(int i=0;i<n;i++)
+			arr[i]=cin.nextInt();
+		System.out.println("Media aritmetica este: "+ob1.Method1(arr));
+		double []arr2=new double[n];
+		arr2=ob1.Method2(n);
+		System.out.println("Array-ul generat random este: ");
+		for(int i=0;i<n;i++)
+		System.out.println(arr2[i]);
+		System.out.println("Introduceti numarul de litere: ");
+		int nr;
+		nr=cin.nextInt();
+		char []arr3=new char[nr];
+		System.out.println("Introduceti array-ul: ");
+		for(int i=0;i<nr;i++)
+			arr3[i]=cin.next().charAt(0);
+		System.out.println("String-ul cu uppercase este: "+Methods.Method3(arr3));
+	}
+}

@@ -1,0 +1,83 @@
+/**Consider a Java interface that contains the prototypes of the methods of addition, subtraction, multiplication,
+division, square root and power lifting. All methods will have two double type parameters and specify the returned
+double type.
+Implement the interface so that operations are defined within a class. Instantiate the class and check the implemented
+operations.
+Vlad Coman, Group 2024
+11.03.2020*/
+import java.util.Scanner;
+import java.lang.Math;
+interface Test{
+		double addition(double a, double b);
+		double substraction(double a, double b);
+		double multiplication(double a, double b);
+		double division(double a, double b);
+		double squareroot(double a);
+		double power(double a, double b);
+}
+class Implementation implements Test{
+	private double a, b;
+	Implementation(double a, double b){
+		this.setA(a);
+		this.setB(b);
+	}
+	Implementation(){
+		this.setA(0);
+		this.setB(0);
+	}
+	public double getA() {
+		return a;
+	}
+	public void setA(double a) {
+		this.a = a;
+	}
+	public double getB() {
+		return b;
+	}
+	public void setB(double b) {
+		this.b = b;
+	}
+	@Override
+	public double addition(double a, double b) {
+		return a+b;
+	}
+	@Override
+	public double substraction(double a, double b) {
+		return a-b;
+	}
+	@Override
+	public double multiplication(double a, double b) {
+		return a*b;
+	}
+	@Override
+	public double division(double a, double b) {
+		return a/b;
+	}
+	@Override
+	public double squareroot(double a) {
+		return Math.sqrt(a);
+	}
+	@Override
+	public double power(double a, double b) {
+		return Math.pow(a, b);
+	}
+	
+}
+public class lab5 {
+	private static Scanner cin=new Scanner(System.in);
+	public static void main(String []args) {
+		double a, b;
+		Implementation calculator=new Implementation();
+		System.out.println("Introduceti doua numere de tip double: ");
+		a=cin.nextDouble();
+		b=cin.nextDouble();
+		calculator.setA(a);
+		calculator.setB(b);
+		System.out.println("Suma numerelor este: "+calculator.addition(a, b));
+		System.out.println("Diferenta numerelor este: "+calculator.substraction(a, b));
+		System.out.println("Produsul numerelor este: "+calculator.multiplication(a, b));
+		System.out.println("Rezultatul impartirii celor doua numere este: "+calculator.division(a, b));
+		System.out.println("Radical din numarul "+a+" este: "+calculator.squareroot(a));
+		System.out.println(a+" la puterea "+b+" este: "+calculator.power(a, b));
+	}
+}

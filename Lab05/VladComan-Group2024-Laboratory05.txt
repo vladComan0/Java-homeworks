@@ -1,0 +1,720 @@
+/**Consider a Java interface that contains the prototypes of the methods of addition, subtraction, multiplication,
+division, square root and power lifting. All methods will have two double type parameters and specify the returned
+double type.
+Implement the interface so that operations are defined within a class. Instantiate the class and check the implemented
+operations.
+Vlad Coman, Group 2024
+11.03.2020*/
+import java.util.Scanner;
+import java.lang.Math;
+interface Test{
+		double addition(double a, double b);
+		double substraction(double a, double b);
+		double multiplication(double a, double b);
+		double division(double a, double b);
+		double squareroot(double a);
+		double power(double a, double b);
+}
+class Implementation implements Test{
+	private double a, b;
+	Implementation(double a, double b){
+		this.setA(a);
+		this.setB(b);
+	}
+	Implementation(){
+		this.setA(0);
+		this.setB(0);
+	}
+	public double getA() {
+		return a;
+	}
+	public void setA(double a) {
+		this.a = a;
+	}
+	public double getB() {
+		return b;
+	}
+	public void setB(double b) {
+		this.b = b;
+	}
+	@Override
+	public double addition(double a, double b) {
+		return a+b;
+	}
+	@Override
+	public double substraction(double a, double b) {
+		return a-b;
+	}
+	@Override
+	public double multiplication(double a, double b) {
+		return a*b;
+	}
+	@Override
+	public double division(double a, double b) {
+		return a/b;
+	}
+	@Override
+	public double squareroot(double a) {
+		return Math.sqrt(a);
+	}
+	@Override
+	public double power(double a, double b) {
+		return Math.pow(a, b);
+	}
+	
+}
+public class lab5 {
+	private static Scanner cin=new Scanner(System.in);
+	public static void main(String []args) {
+		double a, b;
+		Implementation calculator=new Implementation();
+		System.out.println("Introduceti doua numere de tip double: ");
+		a=cin.nextDouble();
+		b=cin.nextDouble();
+		calculator.setA(a);
+		calculator.setB(b);
+		System.out.println("Suma numerelor este: "+calculator.addition(a, b));
+		System.out.println("Diferenta numerelor este: "+calculator.substraction(a, b));
+		System.out.println("Produsul numerelor este: "+calculator.multiplication(a, b));
+		System.out.println("Rezultatul impartirii celor doua numere este: "+calculator.division(a, b));
+		System.out.println("Radical din numarul "+a+" este: "+calculator.squareroot(a));
+		System.out.println(a+" la puterea "+b+" este: "+calculator.power(a, b));
+	}
+}
+
+
+/**’. Instead of an interface that contains all the aforementioned methods, implement 4 functional interfaces, one for
+each method.
+The interfaces will be implemented within a single class. Instantiate the class and check the implemented operations.
+Vlad Coman, Group 2024
+11.03.2020*/
+import java.util.Scanner;
+import java.lang.Math;
+interface Test{
+		double addition(double a, double b);
+}
+interface Test1{
+	double substraction(double a, double b);
+}
+interface Test2{
+	double multiplication(double a, double b);
+}
+interface Test3{
+	double division(double a, double b);
+}
+interface Test4{
+	double squareroot(double a);
+}
+interface Test5{
+	double power(double a, double b);
+}
+class Implementation implements Test, Test1, Test2, Test3, Test4, Test5{
+	private double a, b;
+	Implementation(double a, double b){
+		this.setA(a);
+		this.setB(b);
+	}
+	Implementation(){
+		this.setA(0);
+		this.setB(0);
+	}
+	public double getA() {
+		return a;
+	}
+	public void setA(double a) {
+		this.a = a;
+	}
+	public double getB() {
+		return b;
+	}
+	public void setB(double b) {
+		this.b = b;
+	}
+	@Override
+	public double addition(double a, double b) {
+		return a+b;
+	}
+	@Override
+	public double substraction(double a, double b) {
+		return a-b;
+	}
+	@Override
+	public double multiplication(double a, double b) {
+		return a*b;
+	}
+	@Override
+	public double division(double a, double b) {
+		return a/b;
+	}
+	@Override
+	public double squareroot(double a) {
+		return Math.sqrt(a);
+	}
+	@Override
+	public double power(double a, double b) {
+		return Math.pow(a, b);
+	}
+	
+}
+public class lab5 {
+	private static Scanner cin=new Scanner(System.in);
+	public static void main(String []args) {
+		double a, b;
+		Implementation calculator=new Implementation();
+		System.out.println("Introduceti doua numere de tip double: ");
+		a=cin.nextDouble();
+		b=cin.nextDouble();
+		calculator.setA(a);
+		calculator.setB(b);
+		System.out.println("Suma numerelor este: "+calculator.addition(a, b));
+		System.out.println("Diferenta numerelor este: "+calculator.substraction(a, b));
+		System.out.println("Produsul numerelor este: "+calculator.multiplication(a, b));
+		System.out.println("Rezultatul impartirii celor doua numere este: "+calculator.division(a, b));
+		System.out.println("Radical din numarul "+a+" este: "+calculator.squareroot(a));
+		System.out.println(a+" la puterea "+b+" este: "+calculator.power(a, b));
+	}
+}
+
+
+/** Use the structure used at 1’ and implement lambda expressions to define the arithmetic operations. Check the
+functionality.
+Vlad Coman, Group 2024
+11.03.2020*/
+import java.util.Scanner;
+import java.lang.Math;
+interface Test1 {
+	double addition(double a, double b);
+}
+
+interface Test2 {
+	double substraction(double a, double b);
+}
+
+interface Test3 {
+	double multiplication(double a, double b);
+}
+
+interface Test4 {
+	double division(double a, double b);
+}
+
+interface Test5 {
+	double squareroot(double a, double b);
+}
+
+interface Test6 {
+	double power(double a, double b);
+}
+
+class Implementation {
+	private double addition(double a, double b, Test1 suma) {
+		return suma.addition(a, b);
+	}
+
+	private double substraction(double a, double b, Test2 diferenta) {
+		return diferenta.substraction(a, b);
+	}
+
+	private double multiplication(double a, double b, Test3 produs) {
+		return produs.multiplication(a, b);
+	}
+
+	private double division(double a, double b, Test4 impartire) {
+		return impartire.division(a, b);
+	}
+
+	private double squareroot(double a, double b, Test5 radacina) {
+		return radacina.squareroot(a, b);
+	}
+
+	private double power(double a, double b, Test6 putere) {
+		return putere.power(a, b);
+	}
+
+	public static void main(String args[]) {
+		Scanner cin = new Scanner(System.in);
+		Implementation ob = new Implementation();
+		System.out.print("Read two numbers from the keyboard: ");
+		System.out.print("\nFirst number: x = ");
+		double x = cin.nextInt();
+		System.out.print("\nSecond number: y = ");
+		double y = cin.nextInt();
+		Test1 addition = (double a, double b) -> a + b;
+		Test2 difference = (double a, double b) -> a - b;
+		Test3 product = (double a, double b) -> a * b;
+		Test4 division = (double a, double b) -> a / b;
+		Test5 root = (double a, double b) -> Math.pow(a, 1 / b);
+		Test6 power = (double a, double b) -> Math.pow(a, b);
+		System.out.print("\nThe sum of the two numbers is: " + ob.addition(x, y, addition));
+		System.out.print("\nThe difference of the two numbers is: " + ob.substraction(x, y, difference));
+		System.out.print("\nThe product of the two numbers is: " + ob.multiplication(x, y, product));
+		System.out.print("\nThe division of the first number by the second is: " + ob.division(x, y, division));
+		System.out.print("\nThe root of oreder y of x is: " + ob.squareroot(x, y, root));
+		System.out.print("\nThe first number to the power of the second is: " + ob.power(x, y, power));
+	}
+}
+
+
+/** Define an interface call GeometricForm and which contains methods which return the area and perimeter of the
+geometric form. Implement the interface for: squares, rectangles, circles, equilateral triangles and isosceles triangles.
+Read from the keyboard N distinct geometric forms specified by their type and specific parameters (for example for a
+circle, you would need to read its radius). Compute the total area and perimeter of all the geometric forms, taking into
+account the fact that they do not overlap.
+Vlad Coman, Group 2024
+11.03.2020*/
+import java.util.Scanner;
+import java.lang.Math;
+interface GeometricForm{
+	double area(int l);
+	double perimeter(int l);
+}
+class Square implements GeometricForm{
+	private int l;
+	Square(int l){
+		this.setL(l);
+	}
+	Square(){
+		this.setL(0);
+	}
+	public int getL() {
+		return l;
+	}
+	public void setL(int l) {
+		this.l = l;
+	}
+	@Override
+	public double area(int l) {
+		return Math.pow(l, 2);
+	}
+	@Override
+	public double perimeter(int l) {
+		return 4*l;
+	}
+}
+class Triangle implements GeometricForm{
+	private int l;
+	Triangle(int l){
+		this.l=l;
+	}
+	Triangle(){
+		this.l=0;
+	}
+	public void setL(int l) {
+		this.l=l;
+	}
+	public int getL() {
+		return l;
+	}
+	@Override
+	public double area(int l) {
+		return (Math.pow(l, 2)*Math.sqrt(3))/6.;
+	}
+	@Override
+	public double perimeter(int l) {
+		return 3*l;
+	}
+}
+class Hexagon implements GeometricForm{
+	private int l;
+	Hexagon(int l){
+		this.setL(l);
+	}
+	Hexagon(){
+		this.setL(0);
+}
+	public int getL() {
+		return l;
+	}
+	public void setL(int l) {
+		this.l = l;
+	}
+	@Override
+	public double area(int l) {
+		return Math.pow(l, 2)*3*Math.sqrt(3)/2.;
+	}
+	@Override
+	public double perimeter(int l) {
+		return 6*l;
+	}
+	
+}
+public class lab5 {
+	private static Scanner cin=new Scanner(System.in);
+	public static void main(String []args) {
+		int l;
+		int m, n, p;
+		System.out.println("Introduceti numarul de figuri: ");
+		System.out.print("Numarul de patrate = ");
+		n=cin.nextInt();
+		System.out.print("\nNumarul de triunghiuri = ");
+		m=cin.nextInt();
+		System.out.print("\nNumarul de hexagoane = ");
+		p=cin.nextInt();
+		Square []square=new Square[m];
+		Triangle []triangle=new Triangle[n];
+		Hexagon []hexagon=new Hexagon[p];
+		for(int i=0;i<square.length;i++) {
+			square[i]=new Square();
+			System.out.println("Introduceti lungimea laturii pentru patratul "+(i+1)+": ");
+			l=cin.nextInt();
+			square[i].setL(l);
+			System.out.println("Aria patratului "+(i+1)+" este: "+square[i].area(l));
+			System.out.println("Perimetrul patratului "+(i+1)+" este: "+square[i].perimeter(l));
+		}
+		for(int i=0;i<triangle.length;i++) {
+			triangle[i]=new Triangle();
+			System.out.println("Introduceti lungimea laturii pentru triunghiul "+(i+1)+": ");
+			l=cin.nextInt();
+			triangle[i].setL(l);
+			System.out.println("Aria triunghiului "+(i+1)+" este: "+triangle[i].area(l));
+			System.out.println("Perimetrul triunghiului "+(i+1)+" este: "+triangle[i].perimeter(l));
+		}
+		for(int i=0;i<hexagon.length;i++) {
+			hexagon[i]=new Hexagon();
+			System.out.println("Introduceti lungimea laturii pentru hexagonul "+(i+1)+": ");
+			l=cin.nextInt();
+			hexagon[i].setL(l);
+			System.out.println("Aria hexagonului "+(i+1)+" este: "+hexagon[i].area(l));
+			System.out.println("Perimetrul hexagonului "+(i+1)+" este: "+hexagon[i].perimeter(l));
+		}
+		
+	}
+}
+
+
+/*. In this lab exercise you will develop a class hierarchy of shapes and write a program that computes the amount of
+paint needed to paint different objects. The hierarchy will consist of a parent class Shape with three derived classes -
+Sphere, Rectangle, and Cylinder. For the purposes of this exercise, the only attribute a shape will have is a name and the
+method of interest will be one that computes the area of the shape (surface area in the case of three-dimensional
+shapes). Do the following.
+A. Write an abstract class Shape with the following members:
+- an instance variable shapeName of String type
+- an abstract method area()
+- a toString() method that returns the name of the shape
+B. The file Sphere.java contains the Sphere class which is a descendant of Shape. A sphere has a radius as a private
+integer variable and implements the body of the inherited abstract method area().
+C. Define similar classes for a rectangle and a cylinder. The classes Rectangle and Cylinder are also derived from the
+Shape class. A rectangle is defined by its length and width. A cylinder is defined by a radius and height.
+Note: Each of the derived classes override the toString method and define specific mutator and accessor methods.
+D. The file Paint.java contains an interface that has a float constant paintPerSurfaceUnit.
+E. The file PaintThings.java implements the Paint interface and contains a program that computes the amount of paint
+needed to paint various shapes.
+Instantiate the three shape objects: deck <- Rectangle, bigBall <- Sphere and tank <- Cylinder. Make the appropriate
+method calls to assign each object’s specific attributes with data read from the keyboard.
+Compute the amount of paint needed for covering each created shape.
+Vlad Coman, Group 2024
+12.04.2020
+*/
+package Shape;
+import java.util.Scanner;
+public class Main {
+	private static Scanner cin;
+	public static void main(String []args) {
+	cin=new Scanner(System.in);
+	Cube deck=new Cube();
+	Sphere bigBall=new Sphere();
+	Cylinder tank=new Cylinder();
+	int sradius, length, height, cradius;
+	System.out.println("Introduceti valoarea pentru raza sferei: ");
+	sradius=cin.nextInt();
+	System.out.println("Introduceti valoarea pentru latura cubului: ");
+	length=cin.nextInt();
+	System.out.println("Introduceti valoarea pentru inaltimea cilindrului: ");
+	height=cin.nextInt();
+	System.out.println("Introduceti valoarea pentru raza cilindrului: ");
+	cradius=cin.nextInt();
+	deck.setA(length);
+	deck.setName("Cub");
+	bigBall.setRadius(sradius);
+	bigBall.setName("Sfera");
+	tank.setHeight(height);
+	tank.setRadius(cradius);
+	tank.setName("Cilindrul");
+	System.out.println("Cantitatea de vopsea necesara pentru a vopsi: ");
+	PaintThings ob1=new PaintThings();
+	System.out.println("Cubul: "+ob1.quantityc(deck));
+	System.out.println("Sfera: "+ob1.quantitys(bigBall));
+	System.out.println("Cilindrul: "+ob1.quantitycy(tank));
+	}
+}
+package Shape;
+public abstract class Figure {
+	private String name;
+	abstract double area();
+	Figure(String name){
+		this.name=name;
+	}
+	Figure(){
+		this.name=null;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String toString() {
+		return name;
+	}
+}
+package Shape;
+public class Sphere extends Figure{
+	private int radius;
+	Sphere(int radius){
+		this.radius=radius;
+	}
+	Sphere(){
+		this.radius=0;
+	}
+	public int getRadius() {
+		return radius;
+	}
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
+	@Override
+	double area() {
+		return 4*Math.PI*Math.pow(radius, 2);
+	}
+	
+}
+package Shape;
+public class Cube extends Figure{
+	private int a;
+	Cube(int a){
+		this.setA(a);
+	}
+	Cube(){
+		this.setA(0);
+	}
+	public int getA() {
+		return a;
+	}
+	public void setA(int a) {
+		this.a = a;
+	}
+	@Override
+	double area() {
+		return 8*Math.pow(a, 2);
+	}
+	
+}
+package Shape;
+public class Cylinder extends Figure{
+	private int height;
+	private int radius;
+	Cylinder(int height, int radius){
+		this.setHeight(height);
+		this.setRadius(radius);
+	}
+	Cylinder(){
+		this.setHeight(0);
+		this.setRadius(0);
+	}
+	public int getHeight() {
+		return height;
+	}
+	public void setHeight(int height) {
+		this.height = height;
+	}
+	public int getRadius() {
+		return radius;
+	}
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
+	@Override
+	double area() {
+		return 2*Math.PI*Math.pow(radius, 2)+2*Math.PI*height*radius;
+	}	
+}
+package Shape;
+public interface Paint {
+	public static final float paintPerSurfaceUnit = 5;
+}
+package Shape;
+public class PaintThings implements Paint{
+	double quantityc(Cube s){
+		return paintPerSurfaceUnit*s.area();
+	}
+	double quantitys(Sphere s){
+		return paintPerSurfaceUnit*s.area();
+	}
+	double quantitycy(Cylinder s){
+		return paintPerSurfaceUnit*s.area();
+	}
+}
+
+
+/* Consider the Fractie class that has two protected attributes a and b for the counter and denominator, two set () and
+get () methods for each of the class attributes. Define an explicit constructor without parameters that initiates a with 0
+and b with 1, and an explicit constructor with two parameters that can be called if it is checked whether a fraction can
+be defined (b! = 0). Define a method simplifica () that simplifies and returns a Fractie object by calling an int cmmdc (int,
+int) method that uses the modulo's algorithm specific for the class. Define an operation to add two Fractie objects,
+which returns a Fractie object. Define a Fractie_ext class derived from Fractie, which will have a constructor with
+parameters (which calls the constructor from the base class) and which will redefine the method simplifica() using an int
+cmmdc (int, int) algorithm based on subtractions. Add a method for subtracting two fractions.
+Instantiate two Fractie objects without parameters. Set the attributes of the data objects read from the keyboard.
+Display the original attributes of the objects and the new defined attributes. Simplify, add and display results. Instantiate
+two Fractie_ext objects with read data from the keyboard. Simplify, add and subtract objects and display results.
+Make an upcast from Fractie_ext to Fractie and try to subtract the items. All operations will be realised in main()
+method.
+Vlad Coman, Group 2024
+12.04.2020
+*/
+package Fractie;
+import java.util.Scanner;
+public class Main {
+	private static Scanner cin;
+	public static void main(String []args) {
+	cin=new Scanner(System.in);
+	int a, b;
+	Fractie ob1=new Fractie();
+	System.out.println("Introduceti valoarea numaratorului pentru prima fractie: ");
+	a=cin.nextInt();
+	ob1.setA(a);
+	System.out.println("Introduceti valoarea numitorului pentru prima fractie: ");
+	b=cin.nextInt();
+	ob1.setB(b);
+	Fractie ob2=new Fractie();
+	System.out.println("Introduceti valoarea numaratorului pentru a doua fractie: ");
+	a=cin.nextInt();
+	ob2.setA(a);
+	System.out.println("Introduceti valoarea numitorului pentru a doua fractie: ");
+	b=cin.nextInt();
+	ob2.setB(b);
+	System.out.println("Valorile initiale ale fractiilor sunt: ");
+	System.out.printf("Prima fractie: a=%d si b=%d",ob1.getA(),ob1.getB());
+	System.out.printf("%n doua fractie: a=%d si b=%d",ob2.getA(),ob2.getB());
+	System.out.println("Prima fractie simplificata este: "+ob1.simplify(ob1));
+	System.out.println("A doua fractie simplificata este: "+ob2.simplify(ob2));
+	Fractie sum=new Fractie();
+	System.out.println("Suma celor doua fractii este: "+sum.addition(ob1, ob2));
+	Fractie_ext ob3=new Fractie_ext(10,5);
+	Fractie_ext ob4=new Fractie_ext(8,5);
+	System.out.println("Prima fractie simplificata cu clasa derivata este: "+ob3.simplify(ob3));
+	System.out.println("A doua fractie simplificata cu clasa derivata este: "+ob4.simplify(ob4));
+	Fractie_ext sum2=new Fractie_ext();
+	System.out.println("Suma celor doua fractii din clasa derivata este: "+sum2.addition(ob3, ob4));
+	Fractie ob5=ob3;
+	System.out.println("A 5-a fractie este(upcasting): "+ob5.getA()+" "+ob5.getB());
+	}
+}
+package Fractie;
+public class Fractie {
+	protected int a, b;
+	Fractie(){
+	this.a=0;
+	this.b=1;
+	}
+	Fractie(int a, int b){
+		if(b!=0) {
+			this.a=a;
+			this.b=b;
+		}
+		else System.out.println("The value of b must be different than 0");
+	}
+	public void setA(int a) {
+		this.a=a;
+	}
+	public int getA() {
+		return a;
+	}
+	public void setB(int b) {
+		if(b!=0)
+			this.b=b;
+		else System.out.println("The value of b must be different than 0");
+	}
+	public int getB() {
+		return b;
+	}
+	public int gcd(int a, int b) {
+		int c;
+	    while (b!=0) {
+	        c = a % b;
+	        a = b;
+	        b = c;
+	    }
+	    return a;
+	}
+	public Fractie simplify(Fractie ob1) {
+		if(gcd(ob1.a, ob1.b)!=1) {
+			ob1.a/=gcd(ob1.a,ob1.b);
+			ob1.b/=gcd(ob1.a,ob1.b);
+		}
+		return ob1;
+	}
+	public Fractie addition(Fractie ob1, Fractie ob2) {
+		Fractie sum=new Fractie();
+		if(ob1.b==ob2.b) {
+			sum.a=ob1.a+ob2.a;
+			sum.b=ob1.b;
+		}
+		else {
+			ob1.a*=ob2.b;
+			ob2.a*=ob1.b;
+			ob1.b*=ob2.b;
+			ob2.b*=ob1.b;
+			sum.a=ob1.a+ob2.a;
+			sum.b=ob1.b;
+		}
+		return sum;
+	}
+}
+package Fractie;
+
+public class Fractie_ext extends Fractie{
+	private int counter, denominator;
+	Fractie_ext(int counter, int denominator){
+		super(counter, denominator);
+	}
+	Fractie_ext(){
+		this.setCounter(0);
+		this.setDenominator(0);
+	}
+	public Fractie substraction(Fractie ob1, Fractie ob2) {
+		Fractie diff=new Fractie();
+		if(ob1.b==ob2.b) {
+			diff.a=ob1.a-ob2.a;
+			diff.b=ob1.b;
+		}
+		else {
+			ob1.a*=ob2.b;
+			ob2.a*=ob1.b;
+			ob1.b*=ob2.b;
+			ob2.b*=ob1.b;
+			diff.a=ob1.a-ob2.a;
+			diff.b=ob1.b;
+		}
+		return diff;
+	}
+	public int gcd(int a, int b) {
+	    while (a!=b) {
+	       if(a>b)
+	    	   a-=b;
+	       else b-=a;
+	    }
+	    return a;
+	}
+	public Fractie simplify(Fractie ob1) {
+		if(gcd(ob1.a, ob1.b)!=1) {
+			ob1.a/=gcd(ob1.a,ob1.b);
+			ob1.b/=gcd(ob1.a,ob1.b);
+		}
+		return ob1;
+	}
+	public int getCounter() {
+		return counter;
+	}
+	public void setCounter(int counter) {
+		this.counter = counter;
+	}
+	public int getDenominator() {
+		return denominator;
+	}
+	public void setDenominator(int denominator) {
+		this.denominator = denominator;
+	}
+}
+
+

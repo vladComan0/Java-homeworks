@@ -1,0 +1,125 @@
+/** Define an interface call GeometricForm and which contains methods which return the area and perimeter of the
+geometric form. Implement the interface for: squares, rectangles, circles, equilateral triangles and isosceles triangles.
+Read from the keyboard N distinct geometric forms specified by their type and specific parameters (for example for a
+circle, you would need to read its radius). Compute the total area and perimeter of all the geometric forms, taking into
+account the fact that they do not overlap.
+Vlad Coman, Group 2024
+11.03.2020*/
+import java.util.Scanner;
+import java.lang.Math;
+interface GeometricForm{
+	double area(int l);
+	double perimeter(int l);
+}
+class Square implements GeometricForm{
+	private int l;
+	Square(int l){
+		this.setL(l);
+	}
+	Square(){
+		this.setL(0);
+	}
+	public int getL() {
+		return l;
+	}
+	public void setL(int l) {
+		this.l = l;
+	}
+	@Override
+	public double area(int l) {
+		return Math.pow(l, 2);
+	}
+	@Override
+	public double perimeter(int l) {
+		return 4*l;
+	}
+}
+class Triangle implements GeometricForm{
+	private int l;
+	Triangle(int l){
+		this.l=l;
+	}
+	Triangle(){
+		this.l=0;
+	}
+	public void setL(int l) {
+		this.l=l;
+	}
+	public int getL() {
+		return l;
+	}
+	@Override
+	public double area(int l) {
+		return (Math.pow(l, 2)*Math.sqrt(3))/6.;
+	}
+	@Override
+	public double perimeter(int l) {
+		return 3*l;
+	}
+}
+class Hexagon implements GeometricForm{
+	private int l;
+	Hexagon(int l){
+		this.setL(l);
+	}
+	Hexagon(){
+		this.setL(0);
+}
+	public int getL() {
+		return l;
+	}
+	public void setL(int l) {
+		this.l = l;
+	}
+	@Override
+	public double area(int l) {
+		return Math.pow(l, 2)*3*Math.sqrt(3)/2.;
+	}
+	@Override
+	public double perimeter(int l) {
+		return 6*l;
+	}
+	
+}
+public class lab5 {
+	private static Scanner cin=new Scanner(System.in);
+	public static void main(String []args) {
+		int l;
+		int m, n, p;
+		System.out.println("Introduceti numarul de figuri: ");
+		System.out.print("Numarul de patrate = ");
+		n=cin.nextInt();
+		System.out.print("\nNumarul de triunghiuri = ");
+		m=cin.nextInt();
+		System.out.print("\nNumarul de hexagoane = ");
+		p=cin.nextInt();
+		Square []square=new Square[m];
+		Triangle []triangle=new Triangle[n];
+		Hexagon []hexagon=new Hexagon[p];
+		for(int i=0;i<square.length;i++) {
+			square[i]=new Square();
+			System.out.println("Introduceti lungimea laturii pentru patratul "+(i+1)+": ");
+			l=cin.nextInt();
+			square[i].setL(l);
+			System.out.println("Aria patratului "+(i+1)+" este: "+square[i].area(l));
+			System.out.println("Perimetrul patratului "+(i+1)+" este: "+square[i].perimeter(l));
+		}
+		for(int i=0;i<triangle.length;i++) {
+			triangle[i]=new Triangle();
+			System.out.println("Introduceti lungimea laturii pentru triunghiul "+(i+1)+": ");
+			l=cin.nextInt();
+			triangle[i].setL(l);
+			System.out.println("Aria triunghiului "+(i+1)+" este: "+triangle[i].area(l));
+			System.out.println("Perimetrul triunghiului "+(i+1)+" este: "+triangle[i].perimeter(l));
+		}
+		for(int i=0;i<hexagon.length;i++) {
+			hexagon[i]=new Hexagon();
+			System.out.println("Introduceti lungimea laturii pentru hexagonul "+(i+1)+": ");
+			l=cin.nextInt();
+			hexagon[i].setL(l);
+			System.out.println("Aria hexagonului "+(i+1)+" este: "+hexagon[i].area(l));
+			System.out.println("Perimetrul hexagonului "+(i+1)+" este: "+hexagon[i].perimeter(l));
+		}
+		
+	}
+}

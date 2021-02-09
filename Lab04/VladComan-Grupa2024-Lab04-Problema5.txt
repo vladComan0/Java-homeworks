@@ -1,0 +1,19 @@
+/*Build a Java application that tests the new methods of the String class, introduced in Java11.
+Vlad Coman, Group 2024
+03.04.2020
+*/
+import java.util.Scanner;
+public class MyClass {
+	private static Scanner cin;
+	public static void main(String []args) {
+		cin=new Scanner(System.in);
+		String tester=new String();
+		System.out.println("Introduceti un string: ");
+		tester=cin.next();
+		System.out.println("Urmatoarea functie va returna true daca sirul este gol sau false in caz contrar: ");
+		System.out.println(tester.isBlank());
+		System.out.println(tester.lines());
+		System.out.println(tester.stripLeading());
+		System.out.println(tester.repeat(10));
+	}
+}
